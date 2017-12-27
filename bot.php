@@ -107,8 +107,8 @@ if(!is_null($events)){
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
                     case "i":
-                        $picFullSize = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower';
-                        $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower/240';
+                        $picFullSize = 'https://github.com/fahpratan/Abdul/blob/master/ip_utl1-1.JPG';
+                        $picThumbnail = 'https://github.com/fahpratan/Abdul/blob/master/ip_utl1-1.JPG/240';
                         $replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
                         break;
                     case "v":

@@ -287,41 +287,37 @@ if(!is_null($events)){
                         // กำหนด action 4 ปุ่ม 4 ประเภท
                         $actionBuilder = array(
                             new MessageTemplateActionBuilder(
-                                'Message Template',// ข้อความแสดงในปุ่ม
-                                'This is Text' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                                'Location UTL',// ข้อความแสดงในปุ่ม
+                                'map' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
-                            new UriTemplateActionBuilder(
-                                'Uri Template', // ข้อความแสดงในปุ่ม
-                                'https://www.ninenik.com'
+                            new MessageTemplateActionBuilder(
+                                'IP Printer UTL', // ข้อความแสดงในปุ่ม
+                                'printer'
                             ),
-                            new PostbackTemplateActionBuilder(
-                                'Postback', // ข้อความแสดงในปุ่ม
-                                http_build_query(array(
-                                    'action'=>'buy',
-                                    'item'=>100
-                                )), // ข้อมูลที่จะส่งไปใน webhook ผ่าน postback event
-                                'Postback Text'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-                            ),      
+                           new MessageTemplateActionBuilder(
+                                'Telephone UTL',// ข้อความแสดงในปุ่ม
+                                'tel' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
                         );
                         $replyData = new TemplateMessageBuilder('Carousel',
                             new CarouselTemplateBuilder(
                                 array(
                                     new CarouselColumnTemplateBuilder(
-                                        'Title Carousel',
-                                        'Description Carousel',
-                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
+                                        'Location UTL',
+                                        'Please select UTL',
+                                        'https://eteknix-eteknixltd.netdna-ssl.com/wp-content/uploads/2016/06/gps-location.png',
                                         $actionBuilder
                                     ),
                                     new CarouselColumnTemplateBuilder(
-                                        'Title Carousel',
-                                        'Description Carousel',
-                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
+                                        'IP Printer UTL',
+                                        'Please select UTL',
+                                        'https://thetomatos.com/wp-content/uploads/2016/02/printer-clipart-5.png',
                                         $actionBuilder
                                     ),
                                     new CarouselColumnTemplateBuilder(
-                                        'Title Carousel',
-                                        'Description Carousel',
-                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
+                                        'Telephone UTL',
+                                        'Please select UTL',
+                                        'http://www.bigbearsteak.com/wp-content/uploads/2016/07/icon-Phone-circle_zpsbt3frfu1.png',
                                         $actionBuilder
                                     ),                                          
                                 )

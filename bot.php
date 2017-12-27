@@ -122,8 +122,7 @@ if(!is_null($events)){
                         $replyData = new TextMessageBuilder($textReplyMessage);
                       $check =1;
                         }
-                        if ($check==1){break;}
-                        }           
+                        if ($check==1){break;}           
                     //////////
                     case "I":
                         $picFullSize = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower';

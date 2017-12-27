@@ -107,8 +107,8 @@ if(!is_null($events)){
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
                     case "i":
-                        $picFullSize = 'https://github.com/fahpratan/Abdul/blob/master/ip_utl1-1.JPG';
-                        $picThumbnail = 'https://github.com/fahpratan/Abdul/blob/master/ip_utl1-1.JPG/240';
+                        $picFullSize = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-1.JPG';
+                        $picThumbnail = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-1.JPG/240';
                         $replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
                         break;
                     case "v":
@@ -226,7 +226,34 @@ if(!is_null($events)){
                                     $actionBuilder  // กำหนด action object
                             )
                         );              
-                        break;      
+                        break; 
+                    case "printer":
+                        // กำหนด action 4 ปุ่ม 4 ประเภท
+                        $actionBuilder = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'printer1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'printer2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'printer3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+    
+                        );
+                        $imageUrl = 'https://eteknix-eteknixltd.netdna-ssl.com/wp-content/uploads/2016/06/gps-location.png';
+                        $replyData = new TemplateMessageBuilder('Button Template',
+                            new ButtonTemplateBuilder(
+                                    'Location Utac Thai Limited', // กำหนดหัวเรื่อง
+                                    'Please select UTL', // กำหนดรายละเอียด
+                                    $imageUrl, // กำหนด url รุปภาพ
+                                    $actionBuilder  // กำหนด action object
+                            )
+                        );              
+                        break;  
                     case "t_f":
                         $replyData = new TemplateMessageBuilder('Confirm Template',
                             new ConfirmTemplateBuilder(

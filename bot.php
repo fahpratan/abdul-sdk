@@ -107,9 +107,21 @@ if(!is_null($events)){
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
                     case "i":
-                        $picFullSize = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-1.JPG';
-                        $picThumbnail = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-1.JPG/240';
-                        $replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
+                        $picFullSize1 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-1.JPG';
+                        $picThumbnail1 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-1.JPG/240';
+                        $replyData = new ImageMessageBuilder($picFullSize1,$picThumbnail1);
+                        $picFullSize2 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-2.JPG';
+                        $picThumbnail2 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-2.JPG/240';
+                        $replyData = new ImageMessageBuilder($picFullSize2,$picThumbnail2);
+                        $picFullSize3 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-3.JPG';
+                        $picThumbnail3 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-3.JPG/240';
+                        $replyData = new ImageMessageBuilder($picFullSize3,$picThumbnail3);
+                        $picFullSize4 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-4.JPG';
+                        $picThumbnail4 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-4.JPG/240';
+                        $replyData = new ImageMessageBuilder($picFullSize4,$picThumbnail4);
+                        $picFullSize5 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-5.JPG';
+                        $picThumbnail5 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-5.JPG/240';
+                        $replyData = new ImageMessageBuilder($picFullSize5,$picThumbnail5);
                         break;
                     case "v":
                         $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/240';

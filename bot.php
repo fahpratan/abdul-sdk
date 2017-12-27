@@ -333,17 +333,24 @@ if(!is_null($events)){
                             new ImageCarouselTemplateBuilder(
                                 array(
                                     new ImageCarouselColumnTemplateBuilder(
-                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
+                                        'https://thetomatos.com/wp-content/uploads/2016/02/printer-clipart-5.png',
                                         new UriTemplateActionBuilder(
-                                            'Uri Template', // ข้อความแสดงในปุ่ม
-                                            'https://www.ninenik.com'
+                                            'IP Printer UTL', // ข้อความแสดงในปุ่ม
+                                            'printer'
                                         )
                                     ),
-                                    new ImageCarouselColumnTemplateBuilder(
-                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
+                                  new ImageCarouselColumnTemplateBuilder(
+                                        'https://eteknix-eteknixltd.netdna-ssl.com/wp-content/uploads/2016/06/gps-location.png',
                                         new UriTemplateActionBuilder(
-                                            'Uri Template', // ข้อความแสดงในปุ่ม
-                                            'https://www.ninenik.com'
+                                            'Location UTL', // ข้อความแสดงในปุ่ม
+                                            'map'
+                                        )
+                                    )
+                                    new ImageCarouselColumnTemplateBuilder(
+                                        'http://www.bigbearsteak.com/wp-content/uploads/2016/07/icon-Phone-circle_zpsbt3frfu1.png',
+                                        new UriTemplateActionBuilder(
+                                            'Telephone', // ข้อความแสดงในปุ่ม
+                                            'a'
                                         )
                                     )                                       
                                 )

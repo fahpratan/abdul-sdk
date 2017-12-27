@@ -315,13 +315,13 @@ if(!is_null($events)){
                                     new CarouselColumnTemplateBuilder(
                                         'Title Carousel',
                                         'Description Carousel',
-                                        'https://eteknix-eteknixltd.netdna-ssl.com/wp-content/uploads/2016/06/gps-location.png',
+                                        'https://thetomatos.com/wp-content/uploads/2016/02/printer-clipart-5.png',
                                         $actionBuilder
                                     ),
                                     new CarouselColumnTemplateBuilder(
                                         'Title Carousel',
                                         'Description Carousel',
-                                        'http://www.bigbearsteak.com/wp-content/uploads/2016/07/icon-Phone-circle_zpsbt3frfu1.png',
+                                        'https://thetomatos.com/wp-content/uploads/2016/02/printer-clipart-5.png',
                                         $actionBuilder
                                     ),                                          
                                 )

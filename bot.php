@@ -106,7 +106,7 @@ if(!is_null($events)){
                         $textReplyMessage = "Bot ตอบกลับคุณเป็นข้อความ";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
-                    case "i":
+                    case "printer1":
                         $picFullSize1 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-1.JPG';
                         $picThumbnail1 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-1.JPG/240';
                         $replyData = new ImageMessageBuilder($picFullSize1,$picThumbnail1);

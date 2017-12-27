@@ -121,8 +121,8 @@ if(!is_null($events)){
                         $replyData = new AudioMessageBuilder($audioUrl,20000);
                         break;
                     case "l":
-                        $placeName = "ที่ตั้งร้าน";
-                        $placeAddress = "แขวง พลับพลา เขต วังทองหลาง กรุงเทพมหานคร ประเทศไทย";
+                        $placeName = "Location";
+                        $placeAddress = "UTAC Thailand Company Limited 237 ซอยลาซาล สุขุมวิท 105 ถนนลาซาล แขวงบางนา, เขตบางนา, กรุงเทพมหานคร 10260";
                         $latitude = 13.661456;
                         $longitude = 100.609359;
                         $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              

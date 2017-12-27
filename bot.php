@@ -120,11 +120,25 @@ if(!is_null($events)){
                         $audioUrl = "https://www.ninenik.com/line/S_6988827932080.wav";
                         $replyData = new AudioMessageBuilder($audioUrl,20000);
                         break;
-                    case "location":
-                        $placeName = "Location";
+                    case "location1":
+                        $placeName = "Utac Thai Limited1";
                         $placeAddress = "สุขุมวิท, 237 ซอย สุขุมวิท 105 Khwaeng Bang Na, Khet Bang Na, Krung Thep Maha Nakhon 10260";
                         $latitude = 13.661728;
                         $longitude = 100.608836;
+                        $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
+                        break;
+                    case "location2":
+                        $placeName = "Utac Thai Limited2";
+                        $placeAddress = "สุขุมวิท, 237 ซอย สุขุมวิท 105 Khwaeng Bang Na, Khet Bang Na, Krung Thep Maha Nakhon 10260";
+                        $latitude = 13.661728;
+                        $longitude = 100.608836;
+                        $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
+                        break;
+                   case "location3":
+                        $placeName = "Utac Thai Limited3";
+                        $placeAddress = "Bang Samak, Bang Pakong District, Chachoengsao 24180";
+                        $latitude = 13.581658;
+                        $longitude = 100.930541;
                         $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
                         break;
                     case "m":
@@ -186,20 +200,20 @@ if(!is_null($events)){
                             )
                         );
                         break;          
-                    case "t_b":
+                    case "map":
                         // กำหนด action 4 ปุ่ม 4 ประเภท
                         $actionBuilder = array(
                             new MessageTemplateActionBuilder(
                                 'UTL1',// ข้อความแสดงในปุ่ม
-                                'location' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                                'location1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
                             new MessageTemplateActionBuilder(
                                 'UTL2',// ข้อความแสดงในปุ่ม
-                                'location' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                                'location2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
                             new MessageTemplateActionBuilder(
                                 'UTL3',// ข้อความแสดงในปุ่ม
-                                'location' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                                'location3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
     
                         );

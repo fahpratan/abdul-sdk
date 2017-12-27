@@ -256,10 +256,10 @@ if(!is_null($events)){
                             ),
     
                         );
-                        $imageUrl = 'https://eteknix-eteknixltd.netdna-ssl.com/wp-content/uploads/2016/06/gps-location.png';
+                        $imageUrl = 'https://thetomatos.com/wp-content/uploads/2016/02/printer-clipart-5.png';
                         $replyData = new TemplateMessageBuilder('Button Template',
                             new ButtonTemplateBuilder(
-                                    'Location Utac Thai Limited', // กำหนดหัวเรื่อง
+                                    'IP Printer UTL', // กำหนดหัวเรื่อง
                                     'Please select UTL', // กำหนดรายละเอียด
                                     $imageUrl, // กำหนด url รุปภาพ
                                     $actionBuilder  // กำหนด action object

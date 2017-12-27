@@ -190,12 +190,16 @@ if(!is_null($events)){
                         // กำหนด action 4 ปุ่ม 4 ประเภท
                         $actionBuilder = array(
                             new MessageTemplateActionBuilder(
-                                'Message Template',// ข้อความแสดงในปุ่ม
+                                'UTL1',// ข้อความแสดงในปุ่ม
                                 'This is Text' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
                             new UriTemplateActionBuilder(
-                                'Uri Template', // ข้อความแสดงในปุ่ม
+                                'UTL2', // ข้อความแสดงในปุ่ม
                                 'https://www.ninenik.com'
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'This is Text' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
                             new DatetimePickerTemplateActionBuilder(
                                 'Datetime Picker', // ข้อความแสดงในปุ่ม

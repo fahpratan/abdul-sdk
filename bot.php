@@ -309,7 +309,7 @@ if(!is_null($events)){
                                     new CarouselColumnTemplateBuilder(
                                         'Title Carousel',
                                         'Description Carousel',
-                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
+                                        'https://thetomatos.com/wp-content/uploads/2016/02/printer-clipart-5.png',
                                         $actionBuilder
                                     ),
                                     new CarouselColumnTemplateBuilder(

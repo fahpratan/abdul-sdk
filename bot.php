@@ -123,8 +123,8 @@ if(!is_null($events)){
                     case "l":
                         $placeName = "Location";
                         $placeAddress = " UTAC Thailand Company Limited 237 ซอยลาซาล สุขุมวิท 105 ถนนลาซาล แขวงบางนา, เขตบางนา, กรุงเทพมหานคร 10260";
-                        $latitude = 13.6611;
-                        $longitude = 100.6094;
+                        $latitude = 13.780401863217657;
+                        $longitude = 100.61141967773438;
                         $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
                         break;
                     case "m":

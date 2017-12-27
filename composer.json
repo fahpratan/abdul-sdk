@@ -1,7 +1,0 @@
-{
-    "require": {
-        "kittinan/php-http": "^1.0",
-        "symfony/yaml": "^3.1",
-        "linecorp/line-bot-sdk": "^2.3"
-    }
-}

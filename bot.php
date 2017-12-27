@@ -121,8 +121,8 @@ if(!is_null($events)){
                         $replyData = new AudioMessageBuilder($audioUrl,20000);
                         break;
                     case "l":
-                        $placeName = "Location";
-                        $placeAddress = " UTAC Thailand Company Limited 237 ซอยลาซาล สุขุมวิท 105 ถนนลาซาล แขวงบางนา, เขตบางนา, กรุงเทพมหานคร 10260";
+                        $placeName = "ที่ตั้งร้าน";
+                        $placeAddress = "แขวง พลับพลา เขต วังทองหลาง กรุงเทพมหานคร ประเทศไทย";
                         $latitude = 13.780401863217657;
                         $longitude = 100.61141967773438;
                         $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
@@ -135,13 +135,13 @@ if(!is_null($events)){
                         $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower/240';
                         $imageMessage = new ImageMessageBuilder($picFullSize,$picThumbnail);
                                          
-                        $placeName = "Location";
-                        $placeAddress = " UTAC Thailand Company Limited 237 ซอยลาซาล สุขุมวิท 105 ถนนลาซาล แขวงบางนา, เขตบางนา, กรุงเทพมหานคร 10260";
+                        $placeName = "ที่ตั้งร้าน";
+                        $placeAddress = "แขวง พลับพลา เขต วังทองหลาง กรุงเทพมหานคร ประเทศไทย";
                         $latitude = 13.780401863217657;
                         $longitude = 100.61141967773438;
                         $locationMessage = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);        
      
-                        $multiMessage = new MultiMessageBuilder;
+                        $multiMessage =     new MultiMessageBuilder;
                         $multiMessage->add($textMessage);
                         $multiMessage->add($imageMessage);
                         $multiMessage->add($locationMessage);

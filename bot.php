@@ -283,7 +283,7 @@ if(!is_null($events)){
                             )
                         );
                         break;      
-                    case "t_c":
+                      case "t_c":
                         // กำหนด action 4 ปุ่ม 4 ประเภท
                         $actionBuilder = array(
                             new MessageTemplateActionBuilder(
@@ -309,25 +309,25 @@ if(!is_null($events)){
                                     new CarouselColumnTemplateBuilder(
                                         'Title Carousel',
                                         'Description Carousel',
-                                        'https://eteknix-eteknixltd.netdna-ssl.com/wp-content/uploads/2016/06/gps-location.png',
+                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
                                         $actionBuilder
                                     ),
                                     new CarouselColumnTemplateBuilder(
                                         'Title Carousel',
                                         'Description Carousel',
-                                        'https://thetomatos.com/wp-content/uploads/2016/02/printer-clipart-5.png',
+                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
                                         $actionBuilder
                                     ),
                                     new CarouselColumnTemplateBuilder(
                                         'Title Carousel',
                                         'Description Carousel',
-                                        'http://www.bigbearsteak.com/wp-content/uploads/2016/07/icon-Phone-circle_zpsbt3frfu1.png',
+                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
                                         $actionBuilder
                                     ),                                          
                                 )
                             )
                         );
-                        break;      
+                        break;           
                        case "t_ic":
                         $replyData = new TemplateMessageBuilder('Image Carousel',
                             new ImageCarouselTemplateBuilder(

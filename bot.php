@@ -1,5 +1,4 @@
-
-<?php
+ <?php
 // กรณีต้องการตรวจสอบการแจ้ง error ให้เปิด 3 บรรทัดล่างนี้ให้ทำงาน กรณีไม่ ให้ comment ปิดไป
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -98,54 +97,37 @@ if(!is_null($events)){
         }
         $replyData = new TextMessageBuilder($textReplyMessage);     
     }
-    //ask tell
-    $obj1 = array();
-    $Name_tel = fopen('Tel.csv', 'r');
-    while( ($objA = fgetcsv($Name_tel)) !== false) {
-            $obj1[] = $objA;
-          }
-    ///////
     if(!is_null($is_message)){
         switch ($typeMessage){
             case 'text':
-                $userMessage = strtoupper($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
+                $userMessage = strtolower($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
                 switch ($userMessage) {
-                    case "T":
+                    case "t":
                         $textReplyMessage = "Bot ตอบกลับคุณเป็นข้อความ";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
-                    ///////
-                    $check = 0;
-                    for ($i=1;$i<52;$i++){
-                    case $obj1[$i][1]:
-                        $textReplyMessage = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];
-                        $replyData = new TextMessageBuilder($textReplyMessage);
-                      $check =1;
-                        }
-                        if ($check==1){break;}           
-                    //////////
-                    case "I":
+                    case "i":
                         $picFullSize = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower';
                         $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower/240';
                         $replyData = new ImageMessageBuilder($picFullSize,$picThumbnail);
                         break;
-                    case "V":
+                    case "v":
                         $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/240';
                         $videoUrl = "https://www.ninenik.com/line/simplevideo.mp4";             
                         $replyData = new VideoMessageBuilder($videoUrl,$picThumbnail);
                         break;
-                    case "A":
+                    case "a":
                         $audioUrl = "https://www.ninenik.com/line/S_6988827932080.wav";
                         $replyData = new AudioMessageBuilder($audioUrl,20000);
                         break;
-                    case "LOCATION":
+                    case "location":
                         $placeName = "Location";
                         $placeAddress = "สุขุมวิท, 237 ซอย สุขุมวิท 105 Khwaeng Bang Na, Khet Bang Na, Krung Thep Maha Nakhon 10260";
                         $latitude = 13.661728;
                         $longitude = 100.608836;
                         $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
                         break;
-                    case "M":
+                    case "m":
                         $textReplyMessage = "Bot ตอบกลับคุณเป็นข้อความ";
                         $textMessage = new TextMessageBuilder($textReplyMessage);
                                          
@@ -165,12 +147,12 @@ if(!is_null($events)){
                         $multiMessage->add($locationMessage);
                         $replyData = $multiMessage;                                     
                         break;                  
-                    case "S":
+                    case "s":
                         $stickerID = 22;
                         $packageID = 2;
                         $replyData = new StickerMessageBuilder($packageID,$stickerID);
                         break;      
-                    case "IM":
+                    case "im":
                         $imageMapUrl = 'https://www.mywebsite.com/imgsrc/photos/w/sampleimagemap';
                         $replyData = new ImagemapMessageBuilder(
                             $imageMapUrl,
@@ -187,7 +169,7 @@ if(!is_null($events)){
                                     )
                             )); 
                         break;          
-                    case "TM":
+                    case "tm":
                         $replyData = new TemplateMessageBuilder('Confirm Template',
                             new ConfirmTemplateBuilder(
                                     'Confirm template builder',
@@ -204,7 +186,7 @@ if(!is_null($events)){
                             )
                         );
                         break;          
-                    case "T_B":
+                    case "t_b":
                         // กำหนด action 4 ปุ่ม 4 ประเภท
                         $actionBuilder = array(
                             new MessageTemplateActionBuilder(
@@ -245,7 +227,7 @@ if(!is_null($events)){
                             )
                         );              
                         break;      
-                    case "T_F":
+                    case "t_f":
                         $replyData = new TemplateMessageBuilder('Confirm Template',
                             new ConfirmTemplateBuilder(
                                     'Confirm template builder', // ข้อความแนะนหรือบอกวิธีการ หรือคำอธิบาย
@@ -262,7 +244,7 @@ if(!is_null($events)){
                             )
                         );
                         break;      
-                    case "T_C":
+                    case "t_c":
                         // กำหนด action 4 ปุ่ม 4 ประเภท
                         $actionBuilder = array(
                             new MessageTemplateActionBuilder(
@@ -307,7 +289,7 @@ if(!is_null($events)){
                             )
                         );
                         break;      
-                    case "T_IC":
+                    case "t_ic":
                         $replyData = new TemplateMessageBuilder('Image Carousel',
                             new ImageCarouselTemplateBuilder(
                                 array(

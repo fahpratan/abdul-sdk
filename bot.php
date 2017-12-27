@@ -129,7 +129,7 @@ if(!is_null($events)){
                         break;
                     case "location2":
                         $placeName = "Utac Thai Limited2";
-                        $placeAddress = "สุขุมวิท, 237 ซอย สุขุมวิท 105 Khwaeng Bang Na, Khet Bang Na, Krung Thep Maha Nakhon 10260";
+                        $placeAddress = "บริษัท ยูแทคไทย จำกัด (สาขา 2) Tambon Bang Samak, Amphoe Bang Pakong, Chang Wat Chachoengsao 24180";
                         $latitude = 13.661728;
                         $longitude = 100.608836;
                         $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              

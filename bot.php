@@ -283,7 +283,7 @@ if(!is_null($events)){
                             )
                         );
                         break;      
-                    case "t_c":
+                    case "Help":
                         // กำหนด action 4 ปุ่ม 4 ประเภท
                         $actionBuilder = array(
                             new MessageTemplateActionBuilder(
@@ -328,35 +328,28 @@ if(!is_null($events)){
                             )
                         );
                         break;      
-                    case "t_ic":
+                       case "t_ic":
                         $replyData = new TemplateMessageBuilder('Image Carousel',
                             new ImageCarouselTemplateBuilder(
                                 array(
                                     new ImageCarouselColumnTemplateBuilder(
-                                        'https://thetomatos.com/wp-content/uploads/2016/02/printer-clipart-5.png',
+                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
                                         new UriTemplateActionBuilder(
-                                            'IP Printer UTL', // ข้อความแสดงในปุ่ม
-                                            'printer'
+                                            'Uri Template', // ข้อความแสดงในปุ่ม
+                                            'https://www.ninenik.com'
                                         )
                                     ),
-                                  new ImageCarouselColumnTemplateBuilder(
-                                        'https://eteknix-eteknixltd.netdna-ssl.com/wp-content/uploads/2016/06/gps-location.png',
-                                        new UriTemplateActionBuilder(
-                                            'Location UTL', // ข้อความแสดงในปุ่ม
-                                            'map'
-                                        )
-                                    )
                                     new ImageCarouselColumnTemplateBuilder(
-                                        'http://www.bigbearsteak.com/wp-content/uploads/2016/07/icon-Phone-circle_zpsbt3frfu1.png',
+                                        'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/700',
                                         new UriTemplateActionBuilder(
-                                            'Telephone', // ข้อความแสดงในปุ่ม
-                                            'a'
+                                            'Uri Template', // ข้อความแสดงในปุ่ม
+                                            'https://www.ninenik.com'
                                         )
                                     )                                       
                                 )
                             )
                         );
-                        break;                                                                                                                                                                                                  
+                        break;                                                                                                                                                                                                                      
                     default:
                         $textReplyMessage = " คุณไม่ได้พิมพ์ ค่า ตามที่กำหนด";
                         $replyData = new TextMessageBuilder($textReplyMessage);         

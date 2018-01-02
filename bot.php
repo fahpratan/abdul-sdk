@@ -351,7 +351,7 @@ if(!is_null($events)){
                         );
                         break;                                                                                                                                                                                                                      
                     default:
-                        $textReplyMessage = " คุณไม่ได้พิมพ์ ค่า ตามที่กำหนด";
+                        $textReplyMessage = "ฺBotService ไม่เข้าใจคำสั่งของคุณ";
                         $replyData = new TextMessageBuilder($textReplyMessage);         
                         break;                                      
                 }

@@ -284,7 +284,7 @@ if(!is_null($events)){
                                     new CarouselColumnTemplateBuilder(
                                         'Title Carousel',
                                         'Description Carousel',
-                                        'https://thetomatos.com/wp-content/uploads/2016/02/printer-clipart-5.png',
+                                        'https://articles-images.sftcdn.net/wp-content/uploads/sites/3/2016/03/1424198413_079371_1424198643_noticia_normal.jpg',
                                         $actionBuilder
                                     ),
                                     new CarouselColumnTemplateBuilder(

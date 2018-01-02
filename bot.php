@@ -258,7 +258,7 @@ if(!is_null($events)){
                             )
                         );
                         break;      
-                                           case "HELP":
+                   case "HELP":
                         // กำหนด action 4 ปุ่ม 4 ประเภท
                         $actionBuilder = array(
                             new MessageTemplateActionBuilder(
@@ -278,8 +278,8 @@ if(!is_null($events)){
                                 'Postback Text'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ), 
                             new MessageTemplateActionBuilder(
-                                'Message Template',// ข้อความแสดงในปุ่ม
-                                'This is Text' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                                'Message Template1',// ข้อความแสดงในปุ่ม
+                                'This is Text1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),     
                         );
                         $replyData = new TemplateMessageBuilder('Carousel',

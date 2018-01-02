@@ -109,10 +109,11 @@ if(!is_null($events)){
             case 'text':
                 $userMessage = strtoupper($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
                 switch ($userMessage) {
+		    for ($i=1;$i<52;$i++){		
                	    case ($userMessage == $obj1[$i][1]):
 	                        $textReplyMessage = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];
 	                        $replyData = new TextMessageBuilder($textReplyMessage);
-	                        break;
+	                        break;}
                     case "T":
                         $textReplyMessage = "Bot ตอบกลับคุณเป็นข้อความ";
                         $replyData = new TextMessageBuilder($textReplyMessage);

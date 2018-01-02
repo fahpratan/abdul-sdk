@@ -53,7 +53,59 @@ $httpClient = new CurlHTTPClient(LINE_MESSAGE_ACCESS_TOKEN);
 $bot = new LINEBot($httpClient, array('channelSecret' => LINE_MESSAGE_CHANNEL_SECRET));
  
 // คำสั่งรอรับการส่งค่ามาของ LINE Messaging API
-$content = file_get_contents('php://input'); 
+$strAccessToken = "St7+ohHX6Sh+41F1YYqmY1Dl1MnGfxzr988PaMwsB4i7vxoKAMu/DeSUkdlUV3Wiw3y171yb+gIh+7/RcX4mHr4av/cX6+qewFcHlN43xRD08M3PeQl8hND7LzEU0el1F3wRHG9VFD+3XFzwj5jfQAdB04t89/1O/w1cDnyilFU=";
+$content = file_get_contents('php://input');
+$arrJson = json_decode($content, true);
+$strUrl = "https://api.line.me/v2/bot/message/reply"; 
+$arrHeader = array();
+$arrHeader[] = "Content-Type: application/json";
+$arrHeader[] = "Authorization: Bearer {$strAccessToken}";
+//tel 
+$obj1 = array();
+$Name_tel = fopen('Tel.csv', 'r');
+while( ($objA = fgetcsv($Name_tel)) !== false) {
+        $obj1[] = $objA;
+      }
+//ip printer
+$obj2 = array();
+$ip_printer_all = fopen('IP-all.csv', 'r');
+while( ($objB = fgetcsv($ip_printer_all)) !== false) {
+        $obj2[] = $objB;
+      }
+//tel number
+$check = 0;
+for ($i=1;$i<52;$i++){
+if((strtoupper($arrJson['events'][0]['message']['text']) == $obj1[$i][1])||($arrJson['events'][0]['message']['text']) == $obj1[$i][3]||($arrJson['events'][0]['message']['text']) == $obj1[$i][0]){                           
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];//." "."Mobile phone No:".$obj1[$i][5];
+  $check =1;
+}
+if ($check==1){break;}
+}
+//help ip printer
+for ($p=1;$p<242;$p++){
+if((strtoupper($arrJson['events'][0]['message']['text']) == $obj2[$p][0])||($arrJson['events'][0]['message']['text']) == $obj2[$p][1]){                  
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "Queuename:".$obj2[$p][0]." "." "."IP:".$obj2[$p][1];
+  $check =1;
+}
+if ($check==1){break;}
+}
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,$strUrl);
+curl_setopt($ch, CURLOPT_HEADER, false);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $arrHeader);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+$result = curl_exec($ch);
+curl_close ($ch);
+
 // แปลงข้อความรูปแบบ JSON  ให้อยู่ในโครงสร้างตัวแปร array
 $events = json_decode($content, true);
 if(!is_null($events)){

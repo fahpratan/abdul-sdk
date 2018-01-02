@@ -260,7 +260,7 @@ if(!is_null($events)){
                         break;      
                     case "HELP":
                         // กำหนด action 4 ปุ่ม 4 ประเภท
-                        $actionBuilder = array(
+                     $actionBuilder = array(
                             new MessageTemplateActionBuilder(
                                 'UTL1',// ข้อความแสดงในปุ่ม
                                 'LOCATION1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
@@ -272,6 +272,34 @@ if(!is_null($events)){
                             new MessageTemplateActionBuilder(
                                 'UTL3',// ข้อความแสดงในปุ่ม
                                 'LOCATION3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                        );
+                   $actionBuilder2 = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'PRINTER1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                           new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'PRINTER2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'PRINTER3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                        );
+                   $actionBuilder3 = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'TEL1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                           new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'TEL2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'TEL3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
                         );
                         $replyData = new TemplateMessageBuilder('Carousel',
@@ -287,13 +315,13 @@ if(!is_null($events)){
                                         'IP Printer UTL',
                                         'Please select UTL',
                                         'https://thetomatos.com/wp-content/uploads/2016/02/printer-clipart-5.png',
-                                        $actionBuilder
+                                        $actionBuilder2
                                     ),
                                     new CarouselColumnTemplateBuilder(
                                         'Telephone Dept',
                                         'Please select UTL',
                                         'https://cdn3.iconfinder.com/data/icons/communication-1/100/old_phone-512.png',
-                                        $actionBuilder
+                                        $actionBuilder3
                                     ),                                 
                                 )
                             )

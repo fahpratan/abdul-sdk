@@ -54,6 +54,13 @@ $bot = new LINEBot($httpClient, array('channelSecret' => LINE_MESSAGE_CHANNEL_SE
  
 // คำสั่งรอรับการส่งค่ามาของ LINE Messaging API
 $content = file_get_contents('php://input');
+
+//tel 
+$obj1 = array();
+$Name_tel = fopen('Tel.csv', 'r');
+while( ($objA = fgetcsv($Name_tel)) !== false) {
+        $obj1[] = $objA;
+      }
  
 // แปลงข้อความรูปแบบ JSON  ให้อยู่ในโครงสร้างตัวแปร array
 $events = json_decode($content, true);
@@ -102,6 +109,10 @@ if(!is_null($events)){
             case 'text':
                 $userMessage = strtolower($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
                 switch ($userMessage) {
+                	case ($userMessage == $obj1[$i][1]):
+	                        $textReplyMessage = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];
+	                        $replyData = new TextMessageBuilder($textReplyMessage);
+	                        break;
                     case "t":
                         $textReplyMessage = "Bot ตอบกลับคุณเป็นข้อความ";
                         $replyData = new TextMessageBuilder($textReplyMessage);
@@ -153,26 +164,6 @@ if(!is_null($events)){
                         $longitude = 100.930541;
                         $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
                         break;
-                    case "m":
-                        $textReplyMessage = "Bot ตอบกลับคุณเป็นข้อความ";
-                        $textMessage = new TextMessageBuilder($textReplyMessage);
-                                         
-                        $picFullSize = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower';
-                        $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower/240';
-                        $imageMessage = new ImageMessageBuilder($picFullSize,$picThumbnail);
-                                         
-                        $placeName = "ที่ตั้งร้าน";
-                        $placeAddress = "แขวง พลับพลา เขต วังทองหลาง กรุงเทพมหานคร ประเทศไทย";
-                        $latitude = 13.780401863217657;
-                        $longitude = 100.61141967773438;
-                        $locationMessage = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);        
-     
-                        $multiMessage =     new MultiMessageBuilder;
-                        $multiMessage->add($textMessage);
-                        $multiMessage->add($imageMessage);
-                        $multiMessage->add($locationMessage);
-                        $replyData = $multiMessage;                                     
-                        break;                  
                     case "s":
                         $stickerID = 22;
                         $packageID = 2;
@@ -351,7 +342,7 @@ if(!is_null($events)){
                         );
                         break;                                                                                                                                                                                                                      
                     default:
-                        $textReplyMessage = "ฺBotService ไม่เข้าใจคำสั่งของคุณ";
+                        $textReplyMessage = " Service ไม่เข้าใจคำสั่งของคุณ";
                         $replyData = new TextMessageBuilder($textReplyMessage);         
                         break;                                      
                 }

@@ -258,7 +258,7 @@ if(!is_null($events)){
                             )
                         );
                         break;      
-                      case "HELP":
+                                           case "HELP":
                         // กำหนด action 4 ปุ่ม 4 ประเภท
                         $actionBuilder = array(
                             new MessageTemplateActionBuilder(
@@ -276,33 +276,43 @@ if(!is_null($events)){
                                     'item'=>100
                                 )), // ข้อมูลที่จะส่งไปใน webhook ผ่าน postback event
                                 'Postback Text'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-                            ),      
+                            ), 
+                            new MessageTemplateActionBuilder(
+                                'Message Template',// ข้อความแสดงในปุ่ม
+                                'This is Text' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),     
                         );
                         $replyData = new TemplateMessageBuilder('Carousel',
                             new CarouselTemplateBuilder(
                                 array(
                                     new CarouselColumnTemplateBuilder(
-                                        'Title Carousel',
-                                        'Description Carousel',
+                                        'Location Utac Thai Limited',
+                                        'Please select UTL',
                                         'https://articles-images.sftcdn.net/wp-content/uploads/sites/3/2016/03/1424198413_079371_1424198643_noticia_normal.jpg',
                                         $actionBuilder
                                     ),
                                     new CarouselColumnTemplateBuilder(
-                                        'Title Carousel',
-                                        'Description Carousel',
+                                        'IP Printer UTL',
+                                        'Please select UTL',
                                         'https://thetomatos.com/wp-content/uploads/2016/02/printer-clipart-5.png',
                                         $actionBuilder
                                     ),
                                     new CarouselColumnTemplateBuilder(
-                                        'Title Carousel',
-                                        'Description Carousel',
+                                        'Telephone Dept',
+                                        'Please select UTL',
                                         'https://cdn3.iconfinder.com/data/icons/communication-1/100/old_phone-512.png',
                                         $actionBuilder
-                                    ),                                          
+                                    ),
+                                    new CarouselColumnTemplateBuilder(
+                                        'Youpube learning about IT',
+                                        'Please select Video',
+                                        'https://cdn3.iconfinder.com/data/icons/communication-1/100/old_phone-512.png',
+                                        $actionBuilder
+                                    ),                                                 
                                 )
                             )
                         );
-                        break;           
+                        break; 
                        case "T_IC":
                         $replyData = new TemplateMessageBuilder('Image Carousel',
                             new ImageCarouselTemplateBuilder(

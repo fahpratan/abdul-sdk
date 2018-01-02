@@ -109,15 +109,15 @@ if(!is_null($events)){
             case 'text':
                 $userMessage = strtoupper($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
                 switch ($userMessage) {
-                	case ($userMessage == $obj1[$i][1]):
+               	    case ($userMessage == $obj1[$i][1]):
 	                        $textReplyMessage = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];
 	                        $replyData = new TextMessageBuilder($textReplyMessage);
 	                        break;
-                    case "t":
+                    case "T":
                         $textReplyMessage = "Bot ตอบกลับคุณเป็นข้อความ";
                         $replyData = new TextMessageBuilder($textReplyMessage);
                         break;
-                    case "printer1":
+                    case "PRINTER1":
                         $picFullSize1 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-1.JPG';
                         $picThumbnail1 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-1.JPG/240';
                         $replyData = new ImageMessageBuilder($picFullSize1,$picThumbnail1);
@@ -134,42 +134,42 @@ if(!is_null($events)){
                         $picThumbnail5 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-5.JPG/240';
                         $replyData = new ImageMessageBuilder($picFullSize5,$picThumbnail5);
                         break;
-                    case "v":
+                    case "V":
                         $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/240';
                         $videoUrl = "https://www.ninenik.com/line/simplevideo.mp4";             
                         $replyData = new VideoMessageBuilder($videoUrl,$picThumbnail);
                         break;
-                    case "a":
+                    case "A":
                         $audioUrl = "https://www.ninenik.com/line/S_6988827932080.wav";
                         $replyData = new AudioMessageBuilder($audioUrl,20000);
                         break;
-                    case "location1":
+                    case "LOCATION1":
                         $placeName = "Utac Thai Limited1";
                         $placeAddress = "สุขุมวิท, 237 ซอย สุขุมวิท 105 Khwaeng Bang Na, Khet Bang Na, Krung Thep Maha Nakhon 10260";
                         $latitude = 13.661728;
                         $longitude = 100.608836;
                         $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
                         break;
-                    case "location2":
+                    case "LOCATION2":
                         $placeName = "Utac Thai Limited2";
                         $placeAddress = "บริษัท ยูแทคไทย จำกัด (สาขา 2) Tambon Bang Samak, Amphoe Bang Pakong, Chang Wat Chachoengsao 24180";
                         $latitude = 13.661728;
                         $longitude = 100.608836;
                         $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
                         break;
-                   case "location3":
+                   case "LOCATION3":
                         $placeName = "Utac Thai Limited3";
                         $placeAddress = "Bang Samak, Bang Pakong District, Chachoengsao 24180";
                         $latitude = 13.581658;
                         $longitude = 100.930541;
                         $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
                         break;
-                    case "s":
+                    case "S":
                         $stickerID = 22;
                         $packageID = 2;
                         $replyData = new StickerMessageBuilder($packageID,$stickerID);
                         break;      
-                    case "im":
+                    case "IM":
                         $imageMapUrl = 'https://www.mywebsite.com/imgsrc/photos/w/sampleimagemap';
                         $replyData = new ImagemapMessageBuilder(
                             $imageMapUrl,
@@ -186,7 +186,7 @@ if(!is_null($events)){
                                     )
                             )); 
                         break;          
-                    case "tm":
+                    case "TM":
                         $replyData = new TemplateMessageBuilder('Confirm Template',
                             new ConfirmTemplateBuilder(
                                     'Confirm template builder',
@@ -203,20 +203,20 @@ if(!is_null($events)){
                             )
                         );
                         break;          
-                    case "map":
+                    case "MAP":
                         // กำหนด action 4 ปุ่ม 4 ประเภท
                         $actionBuilder = array(
                             new MessageTemplateActionBuilder(
                                 'UTL1',// ข้อความแสดงในปุ่ม
-                                'location1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                                'LOCATION1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
                             new MessageTemplateActionBuilder(
                                 'UTL2',// ข้อความแสดงในปุ่ม
-                                'location2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                                'LOCATION2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
                             new MessageTemplateActionBuilder(
                                 'UTL3',// ข้อความแสดงในปุ่ม
-                                'location3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                                'LOCATION3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
     
                         );
@@ -230,20 +230,20 @@ if(!is_null($events)){
                             )
                         );              
                         break; 
-                    case "printer":
+                    case "PRINTER":
                         // กำหนด action 4 ปุ่ม 4 ประเภท
                         $actionBuilder = array(
                             new MessageTemplateActionBuilder(
                                 'UTL1',// ข้อความแสดงในปุ่ม
-                                'printer1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                                'PRINTER1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
                             new MessageTemplateActionBuilder(
                                 'UTL2',// ข้อความแสดงในปุ่ม
-                                'printer2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                                'PRINTER2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
                             new MessageTemplateActionBuilder(
                                 'UTL3',// ข้อความแสดงในปุ่ม
-                                'printer3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                                'PRINTER3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
     
                         );
@@ -257,7 +257,7 @@ if(!is_null($events)){
                             )
                         );              
                         break;  
-                    case "t_f":
+                    case "T_F":
                         $replyData = new TemplateMessageBuilder('Confirm Template',
                             new ConfirmTemplateBuilder(
                                     'Confirm template builder', // ข้อความแนะนหรือบอกวิธีการ หรือคำอธิบาย
@@ -274,7 +274,7 @@ if(!is_null($events)){
                             )
                         );
                         break;      
-                      case "help":
+                      case "HELP":
                         // กำหนด action 4 ปุ่ม 4 ประเภท
                         $actionBuilder = array(
                             new MessageTemplateActionBuilder(
@@ -319,7 +319,7 @@ if(!is_null($events)){
                             )
                         );
                         break;           
-                       case "t_ic":
+                       case "T_IC":
                         $replyData = new TemplateMessageBuilder('Image Carousel',
                             new ImageCarouselTemplateBuilder(
                                 array(

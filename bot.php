@@ -231,6 +231,33 @@ if(!is_null($events)){
                             )
                         );              
                         break; 
+                   case "TEL":
+                        // กำหนด action 4 ปุ่ม 4 ประเภท
+                        $actionBuilder = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'TEL1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'TEL2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'TEL3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+    
+                        );
+                        $imageUrl = 'https://cdn3.iconfinder.com/data/icons/communication-1/100/old_phone-512.png';
+                        $replyData = new TemplateMessageBuilder('Button Template',
+                            new ButtonTemplateBuilder(
+                                    'Telephone Dept', // กำหนดหัวเรื่อง
+                                    'Please select UTL', // กำหนดรายละเอียด
+                                    $imageUrl, // กำหนด url รุปภาพ
+                                    $actionBuilder  // กำหนด action object
+                            )
+                        );              
+                        break; 
                     case "PRINTER":
                         // กำหนด action 4 ปุ่ม 4 ประเภท
                         $actionBuilder = array(

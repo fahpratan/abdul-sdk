@@ -102,20 +102,20 @@ if(!is_null($events)){
                 $userMessage = strtoupper($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
                 switch ($userMessage) {
                    case "PRINTER1":
-                        $picFullSize1 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-1.JPG';
-                        $picThumbnail1 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-1.JPG/240';
+                        $picFullSize1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-1.JPG';
+                        $picThumbnail1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-1.JPG/240';
                         $replyData1 = new ImageMessageBuilder($picFullSize1,$picThumbnail1);
-                        $picFullSize2 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-2.JPG';
-                        $picThumbnail2 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-2.JPG/240';
+                        $picFullSize2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-2.JPG';
+                        $picThumbnail2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-2.JPG/240';
                         $replyData2 = new ImageMessageBuilder($picFullSize2,$picThumbnail2);
-                        $picFullSize3 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-3.JPG';
-                        $picThumbnail3 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-3.JPG/240';
+                        $picFullSize3 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-3.JPG';
+                        $picThumbnail3 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-3.JPG/240';
                         $replyData3 = new ImageMessageBuilder($picFullSize3,$picThumbnail3);
-                        $picFullSize4 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-4.JPG';
-                        $picThumbnail4 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-4.JPG/240';
+                        $picFullSize4 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-4.JPG';
+                        $picThumbnail4 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-4.JPG/240';
                         $replyData4 = new ImageMessageBuilder($picFullSize4,$picThumbnail4);
-                        $picFullSize5 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-5.JPG';
-                        $picThumbnail5 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-5.JPG/240';
+                        $picFullSize5 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-5.JPG';
+                        $picThumbnail5 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-5.JPG/240';
                         $replyData5 = new ImageMessageBuilder($picFullSize5,$picThumbnail5);
 
                         $multiMessage = new MultiMessageBuilder;

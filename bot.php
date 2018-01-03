@@ -102,46 +102,41 @@ if(!is_null($events)){
                 $userMessage = strtoupper($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
                 switch ($userMessage) {
                    case "PRINTER1":
-                        $picFullSize1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-1.JPG';
-                        $picThumbnail1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-1.JPG/240';
+                        $picFullSize1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1.JPG';
+                        $picThumbnail1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1.JPG/240';
                         $replyData1 = new ImageMessageBuilder($picFullSize1,$picThumbnail1);
-                        $picFullSize2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-2.JPG';
-                        $picThumbnail2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-2.JPG/240';
+                        $picFullSize2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1-2.JPG';
+                        $picThumbnail2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1-2.JPG/240';
                         $replyData2 = new ImageMessageBuilder($picFullSize2,$picThumbnail2);
-                        $picFullSize3 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-3.JPG';
-                        $picThumbnail3 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-3.JPG/240';
+                        $picFullSize3 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1-3.JPG';
+                        $picThumbnail3 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1-3.JPG/240';
                         $replyData3 = new ImageMessageBuilder($picFullSize3,$picThumbnail3);
                        
-                        $multiMessage = new MultiMessageBuilder;
-                        $multiMessage->add($replyData1);
-                        $multiMessage->add($replyData2);
-                        $multiMessage->add($replyData3);
-                        $replyData = $multiMessage;
+                        $multiMessage1 = new MultiMessageBuilder;
+                        $multiMessage1->add($replyData1);
+                        $multiMessage1->add($replyData2);
+                        $multiMessage1->add($replyData3);
+                        $replyData = $multiMessage1;
                         break;
                   case "PRINTER2":
-                        $picFullSize2_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-1.JPG';
-                        $picThumbnai2_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-1.JPG/240';
+                        $picFullSize2_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl2-1.JPG';
+                        $picThumbnai2_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl2-1.JPG/240';
                         $replyData2_1 = new ImageMessageBuilder($picFullSize1,$picThumbnail1);
-                        $picFullSize2_2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-2.JPG';
-                        $picThumbnail2_2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-2.JPG/240';
-                        $replyData2_2 = new ImageMessageBuilder($picFullSize2,$picThumbnail2);
-                        $picFullSize2_3 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-3.JPG';
-                        $picThumbnail2_3 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-3.JPG/240';
-                        $replyData2_3 = new ImageMessageBuilder($picFullSize3,$picThumbnail3);
-                        $picFullSize2_4 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-4.JPG';
-                        $picThumbnail2_4 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-4.JPG/240';
-                        $replyData2_4 = new ImageMessageBuilder($picFullSize4,$picThumbnail4);
-                        $picFullSize2_5 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-5.jpg';
-                        $picThumbnail2_5 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-5.jpg/240';
-                        $replyData2_5 = new ImageMessageBuilder($picFullSize5,$picThumbnail5);
-
-                        $multiMessage = new MultiMessageBuilder;
-                        $multiMessage->add($replyData1);
-                        $multiMessage->add($replyData2);
-                        $multiMessage->add($replyData3);
-                        $multiMessage->add($replyData4);
-                        $multiMessage->add($replyData5);
-                        $replyData = $multiMessage;
+                        $multiMessage2 = new MultiMessageBuilder;
+                        $multiMessage2->add($replyData2_1);
+                        $replyData = $multiMessage2;
+                        break;
+                   case "PRINTER3":
+                        $picFullSize3_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl3-1.JPG';
+                        $picThumbnail3_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl3-1.JPG/240';
+                        $replyData3_1 = new ImageMessageBuilder($picFullSize1,$picThumbnail1);
+                        $picFullSize3_2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl3-2.JPG';
+                        $picThumbnail3_2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl3-2.JPG/240';
+                        $replyData3_2 = new ImageMessageBuilder($picFullSize2,$picThumbnail2);
+                        $multiMessage3 = new MultiMessageBuilder;
+                        $multiMessage3->add($replyData3_1);
+                        $multiMessage3->add($replyData3_2);
+                        $replyData = $multiMessage3;
                         break;
                     case "V":
                         $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/240';

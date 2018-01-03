@@ -122,9 +122,9 @@ if(!is_null($events)){
                         $picFullSize2_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl2-1.JPG';
                         $picThumbnai2_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl2-1.JPG/240';
                         $replyData2_1 = new ImageMessageBuilder($picFullSize2_1,$picThumbnail2_1);
-                        $multiMessage = new MultiMessageBuilder;
-                        $multiMessage->add($replyData2_1);
-                        $replyData = $multiMessage;
+                        $multiMessage2 = new MultiMessageBuilder;
+                        $multiMessage2->add($replyData2_1);
+                        $replyData = $multiMessage2;
                         break;
                    case "PRINTER3":
                         $picFullSize3_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl3-1.JPG';
@@ -133,10 +133,10 @@ if(!is_null($events)){
                         $picFullSize3_2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl3-2.JPG';
                         $picThumbnail3_2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl3-2.JPG/240';
                         $replyData3_2 = new ImageMessageBuilder($picFullSize3_2,$picThumbnail3_2);
-                        $multiMessage = new MultiMessageBuilder;
-                        $multiMessage->add($replyData3_1);
-                        $multiMessage->add($replyData3_2);
-                        $replyData = $multiMessage;
+                        $multiMessage3 = new MultiMessageBuilder;
+                        $multiMessage3->add($replyData3_1);
+                        $multiMessage3->add($replyData3_2);
+                        $replyData = $multiMessage3;
                         break;
                     case "V":
                         $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/240';

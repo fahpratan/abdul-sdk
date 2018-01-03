@@ -114,8 +114,8 @@ if(!is_null($events)){
                         $picFullSize4 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-4.JPG';
                         $picThumbnail4 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-4.JPG/240';
                         $replyData4 = new ImageMessageBuilder($picFullSize4,$picThumbnail4);
-                        $picFullSize5 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-5.JPG';
-                        $picThumbnail5 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-5.JPG/240';
+                        $picFullSize5 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-5.jpg';
+                        $picThumbnail5 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip_utl1-5.jpg/240';
                         $replyData5 = new ImageMessageBuilder($picFullSize5,$picThumbnail5);
 
                         $multiMessage = new MultiMessageBuilder;

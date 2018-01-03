@@ -101,22 +101,30 @@ if(!is_null($events)){
             case 'text':
                 $userMessage = strtoupper($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
                 switch ($userMessage) {
-                    case "PRINTER1":
+                   case "PRINTER1":
                         $picFullSize1 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-1.JPG';
                         $picThumbnail1 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-1.JPG/240';
-                        $replyData = new ImageMessageBuilder($picFullSize1,$picThumbnail1);
+                        $replyData1 = new ImageMessageBuilder($picFullSize1,$picThumbnail1);
                         $picFullSize2 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-2.JPG';
                         $picThumbnail2 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-2.JPG/240';
-                        $replyData = new ImageMessageBuilder($picFullSize2,$picThumbnail2);
+                        $replyData2 = new ImageMessageBuilder($picFullSize2,$picThumbnail2);
                         $picFullSize3 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-3.JPG';
                         $picThumbnail3 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-3.JPG/240';
-                        $replyData = new ImageMessageBuilder($picFullSize3,$picThumbnail3);
+                        $replyData3 = new ImageMessageBuilder($picFullSize3,$picThumbnail3);
                         $picFullSize4 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-4.JPG';
                         $picThumbnail4 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-4.JPG/240';
-                        $replyData = new ImageMessageBuilder($picFullSize4,$picThumbnail4);
+                        $replyData4 = new ImageMessageBuilder($picFullSize4,$picThumbnail4);
                         $picFullSize5 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-5.JPG';
                         $picThumbnail5 = 'https://raw.githubusercontent.com/fahpratan/Abdul/master/ip_utl1-5.JPG/240';
-                        $replyData = new ImageMessageBuilder($picFullSize5,$picThumbnail5);
+                        $replyData5 = new ImageMessageBuilder($picFullSize5,$picThumbnail5);
+
+                        $multiMessage = new MultiMessageBuilder;
+                        $multiMessage->add($replyData1);
+                        $multiMessage->add($replyData2);
+                        $multiMessage->add($replyData3);
+                        $multiMessage->add($replyData4);
+                        $multiMessage->add($replyData5);
+                        $replyData = $multiMessage;
                         break;
                     case "V":
                         $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/240';

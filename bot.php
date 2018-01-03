@@ -258,6 +258,32 @@ if(!is_null($events)){
                             )
                         );              
                         break; 
+                    case "SERVER STATUS":
+                        // กำหนด action 4 ปุ่ม 4 ประเภท
+                        $actionBuilder = array(
+                            new MessageTemplateActionBuilder(
+                                'ACCESS POINT',// ข้อความแสดงในปุ่ม
+                                'ACCESS POINT' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'SWITCH',// ข้อความแสดงในปุ่ม
+                                'SWITCH' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'PRINTER',// ข้อความแสดงในปุ่ม
+                                'PRINTER' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                        );
+                        $imageUrl = 'https://cdn.iconscout.com/public/images/icon/premium/png-512/check-server-status-checklist-3ddf4743e512df9c-512x512.png';
+                        $replyData = new TemplateMessageBuilder('Button Template',
+                            new ButtonTemplateBuilder(
+                                    'Asset Status', // กำหนดหัวเรื่อง
+                                    'Please select Asset', // กำหนดรายละเอียด
+                                    $imageUrl, // กำหนด url รุปภาพ
+                                    $actionBuilder  // กำหนด action object
+                            )
+                        );              
+                        break; 
                     case "PRINTER":
                         // กำหนด action 4 ปุ่ม 4 ประเภท
                         $actionBuilder = array(

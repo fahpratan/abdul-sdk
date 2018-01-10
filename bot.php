@@ -47,7 +47,82 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\CarouselColumnTemplateBuilder;
 use LINE\LINEBot\MessageBuilder\TemplateBuilder\ConfirmTemplateBuilder;
 use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselTemplateBuilder;
 use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuilder;
+$strAccessToken = "S8TzqHkbXbka8fuEOcKWikC0QAIq8PrEuScRVHFTwaf/zZ/N/snNi+uUc2m7d4ygavhrJwyRY/GJbQYuJScE3LsfWpufj0Xvgp1NpRj2T6EMhcgAouT/OP9fCksN+alaqF1k+AcwhLNGsnOxyDumNAdB04t89/1O/w1cDnyilFU=";
+$content = file_get_contents('php://input');
+$arrJson = json_decode($content, true);
  
+$strUrl = "https://api.line.me/v2/bot/message/reply";
+ 
+$arrHeader = array();
+$arrHeader[] = "Content-Type: application/json";
+$arrHeader[] = "Authorization: Bearer {$strAccessToken}";
+//tel 
+$obj1 = array();
+$Name_tel = fopen('Tel.csv', 'r');
+while( ($objA = fgetcsv($Name_tel)) !== false) {
+        $obj1[] = $objA;
+      }
+//ip printer
+$obj2 = array();
+$ip_printer_all = fopen('IP-all.csv', 'r');
+while( ($objB = fgetcsv($ip_printer_all)) !== false) {
+        $obj2[] = $objB;
+      }
+//tel number
+$check = 0;
+for ($i=1;$i<52;$i++){
+if((strtoupper($arrJson['events'][0]['message']['text']) == $obj1[$i][1])||($arrJson['events'][0]['message']['text']) == $obj1[$i][3]||($arrJson['events'][0]['message']['text']) == $obj1[$i][0]){                           
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];//." "."Mobile phone No:".$obj1[$i][5];
+  $check =1;
+}
+if ($check==1){break;}
+}
+//help ip printer
+for ($p=1;$p<242;$p++){
+if((strtoupper($arrJson['events'][0]['message']['text']) == $obj2[$p][0])||($arrJson['events'][0]['message']['text']) == $obj2[$p][1]){                  
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "Queuename:".$obj2[$p][0]." "." "."IP:".$obj2[$p][1];
+  $check =1;
+}
+if ($check==1){break;}
+}
+//help etc.
+if (strtoupper($arrJson['events'][0]['message']['text']) == "HELP"){                         
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "text";
+  $arrPostData['messages'][0]['text'] = "1)ต้องการทราบเบอร์โทรศัพท์ให้พิมพ์ชื่อเป็นภาษาอังกฤษ ตัวอย่างเช่น PICHET หรือพิมพ์ EN เช่น123456 หรือพิมพ์ชื่อเล่น เช่น เชษฐ์
+  2)ต้องการทราบIP Printer เช่นที่utl1ให้พิมพ์ว่า ip printer u1";
+  $check =1;
+  }
+if (strtoupper($arrJson['events'][0]['message']['text']) == "button"){                         
+  $arrPostData = array();
+  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+  $arrPostData['messages'][0]['type'] = "image";
+  $arrPostData['messages'][0]['image'] = "https://cdn.shopify.com/s/files/1/0379/7669/products/sampleset2_1024x1024.JPG?v=1458740363";
+  $check =1;
+  }
+//if ($check==0){
+//  $arrPostData = array();
+//  $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
+//  $arrPostData['messages'][0]['type'] = "text";
+//  $arrPostData['messages'][0]['text'] = "Serv1ce ไม่สามารถตอบคำถามของคุณได้";
+//  }
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL,$strUrl);
+curl_setopt($ch, CURLOPT_HEADER, false);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $arrHeader);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($arrPostData));
+curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+$result = curl_exec($ch);
+//curl_close ($ch); 
  
 $httpClient = new CurlHTTPClient(LINE_MESSAGE_ACCESS_TOKEN);
 $bot = new LINEBot($httpClient, array('channelSecret' => LINE_MESSAGE_CHANNEL_SECRET));

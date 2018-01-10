@@ -125,7 +125,7 @@ if(!is_null($events)){
                         $replyData = $multiMessage1;
                         break;
                 // for ($i=1;$i<52;$i++){
-                 case "test":                           
+                 case "TEST":                           
                       $textReplyMessage = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];
                       $replyData = new TextMessageBuilder($textReplyMessage);                           
                       break;

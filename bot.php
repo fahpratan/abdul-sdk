@@ -57,11 +57,11 @@ $content = file_get_contents('php://input');
 // แปลงข้อความรูปแบบ JSON  ให้อยู่ในโครงสร้างตัวแปร array
 $events = json_decode($content, true);
 //DATA tell
-$obj1 = array();
-$Name_tel = fopen('Tel.csv', 'r');
-while( ($objA = fgetcsv($Name_tel)) !== false) {
-        $obj1[] = $objA;
-      }
+//$obj1 = array();
+//$Name_tel = fopen('Tel.csv', 'r');
+//while( ($objA = fgetcsv($Name_tel)) !== false) {
+//        $obj1[] = $objA;
+//      }
 if(!is_null($events)){
     // ถ้ามีค่า สร้างตัวแปรเก็บ replyToken ไว้ใช้งาน
     $replyToken = $events['events'][0]['replyToken'];
@@ -107,13 +107,6 @@ if(!is_null($events)){
             case 'text':
                 $userMessage = strtoupper($userMessage); // แปลงเป็นตัวใหญ่ สำหรับทดสอบ
                 switch ($userMessage) {
-                   for ($i=1;$i<52;$i++){
-                        if((strtoupper($userMessage) == $obj1[$i][1])||($userMessage) == $obj1[$i][3]){
-                        $textReply = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];;
-                        $replyData = new TextMessageBuilder($textReply);         
-                        break; 
-                        }
-                        }
                    case "PRINTER1":
                         $picFullSize1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1.JPG';
                         $picThumbnail1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1.JPG/240';

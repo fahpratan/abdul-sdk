@@ -1,4 +1,4 @@
- <?php
+<?php
 // กรณีต้องการตรวจสอบการแจ้ง error ให้เปิด 3 บรรทัดล่างนี้ให้ทำงาน กรณีไม่ ให้ comment ปิดไป
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -51,12 +51,6 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
  
 $httpClient = new CurlHTTPClient(LINE_MESSAGE_ACCESS_TOKEN);
 $bot = new LINEBot($httpClient, array('channelSecret' => LINE_MESSAGE_CHANNEL_SECRET));
-//tell
-$obj1 = array();
-$Name_tel = fopen('Tel.csv', 'r');
-while( ($objA = fgetcsv($Name_tel)) !== false) {
-        $obj1[] = $objA;
-      }
  
 // คำสั่งรอรับการส่งค่ามาของ LINE Messaging API
 $content = file_get_contents('php://input');
@@ -105,7 +99,7 @@ if(!is_null($events)){
     if(!is_null($is_message)){
         switch ($typeMessage){
             case 'text':
-                $userMessage = strtoupper($userMessage); // แปลงเป็นตัวใหญ่ สำหรับทดสอบ
+                $userMessage = strtoupper($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
                 switch ($userMessage) {
                    case "PRINTER1":
                         $picFullSize1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1.JPG';
@@ -124,12 +118,6 @@ if(!is_null($events)){
                         $multiMessage1->add($replyData3);
                         $replyData = $multiMessage1;
                         break;
-                // for ($i=1;$i<52;$i++){
-                 case "TEST":                           
-                      $textReplyMessage = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];
-                      $replyData = new TextMessageBuilder($textReplyMessage);                           
-                      break;
-                  }      
                  case "PRINTER2":
                         $picFullSize2_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl2-1.JPG';
                         $picThumbnail2_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl2-1.JPG/240';
@@ -484,7 +472,7 @@ if(!is_null($events)){
                                 )
                             )
                         );
-                        break;                                                                                                                              
+                        break;                                                                                                                                                                                                                      
                     default:
                         $textReplyMessage = " Service ไม่เข้าใจคำสั่งของคุณ";
                         $replyData = new TextMessageBuilder($textReplyMessage);         

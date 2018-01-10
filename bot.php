@@ -1,4 +1,4 @@
- <?php
+  <?php
 // กรณีต้องการตรวจสอบการแจ้ง error ให้เปิด 3 บรรทัดล่างนี้ให้ทำงาน กรณีไม่ ให้ comment ปิดไป
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -51,6 +51,12 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuild
  
 $httpClient = new CurlHTTPClient(LINE_MESSAGE_ACCESS_TOKEN);
 $bot = new LINEBot($httpClient, array('channelSecret' => LINE_MESSAGE_CHANNEL_SECRET));
+//tell
+$obj1 = array();
+$Name_tel = fopen('Tel.csv', 'r');
+while( ($objA = fgetcsv($Name_tel)) !== false) {
+        $obj1[] = $objA;
+      }
  
 // คำสั่งรอรับการส่งค่ามาของ LINE Messaging API
 $content = file_get_contents('php://input');
@@ -100,6 +106,15 @@ if(!is_null($events)){
         switch ($typeMessage){
             case 'text':
                 $userMessage = strtoupper($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
+                $check = 0;
+                for ($i=1;$i<52;$i++){
+                if((strtoupper($userMessage) == $obj1[$i][1])||($events['events'][0]['message']['text']) == $obj1[$i][3]||($events['events'][0]['message']['text']) == $obj1[$i][0]){                           
+                  $textReplyMessage = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];
+                  $replyData = new TextMessageBuilder($textReplyMessage);                           
+                  $check =1;
+                }
+                if ($check==1){break;}
+                }
                 switch ($userMessage) {
                    case "PRINTER1":
                         $picFullSize1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1.JPG';
@@ -472,7 +487,7 @@ if(!is_null($events)){
                                 )
                             )
                         );
-                        break;                                                                                                                                                                                                                      
+                        break;                                                                                                                              
                     default:
                         $textReplyMessage = " Service ไม่เข้าใจคำสั่งของคุณ";
                         $replyData = new TextMessageBuilder($textReplyMessage);         
@@ -485,6 +500,7 @@ if(!is_null($events)){
                 break;  
         }
     }
+    if
 }
 $response = $bot->replyMessage($replyToken,$replyData);
 if ($response->isSucceeded()) {

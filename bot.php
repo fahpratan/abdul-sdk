@@ -5,7 +5,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
  
 // include composer autoload
-require_once 'vendor/autoload.php';
+//require_once 'vendor/autoload.php';
  
 // การตั้งเกี่ยวกับ bot
 require_once 'bot_settings.php';
@@ -49,19 +49,20 @@ use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselTemplateBuilder;
 use LINE\LINEBot\MessageBuilder\TemplateBuilder\ImageCarouselColumnTemplateBuilder;
  
  
-$httpClient = new CurlHTTPClient(LINE_MESSAGE_ACCESS_TOKEN);
-$bot = new LINEBot($httpClient, array('channelSecret' => LINE_MESSAGE_CHANNEL_SECRET));
+//$httpClient = new CurlHTTPClient(LINE_MESSAGE_ACCESS_TOKEN);
+//$bot = new LINEBot($httpClient, array('channelSecret' => LINE_MESSAGE_CHANNEL_SECRET));
  
 // คำสั่งรอรับการส่งค่ามาของ LINE Messaging API
 $content = file_get_contents('php://input');
 // แปลงข้อความรูปแบบ JSON  ให้อยู่ในโครงสร้างตัวแปร array
 $events = json_decode($content, true);
 //DATA tell
-//$obj1 = array();
-//$Name_tel = fopen('Tel.csv', 'r');
-//while( ($objA = fgetcsv($Name_tel)) !== false) {
-//        $obj1[] = $objA;
-//      }
+$obj1 = array();
+$Name_tel = fopen('Tel.csv', 'r');
+while( ($objA = fgetcsv($Name_tel)) !== false) {
+        $obj1[] = $objA;
+      }
+      
 if(!is_null($events)){
     // ถ้ามีค่า สร้างตัวแปรเก็บ replyToken ไว้ใช้งาน
     $replyToken = $events['events'][0]['replyToken'];
@@ -124,6 +125,12 @@ if(!is_null($events)){
                         $multiMessage1->add($replyData3);
                         $replyData = $multiMessage1;
                         break;
+                   case "PRASAN":     
+                        //for ($i=1;$i<52;$i++){
+                        $textReplyMessage = "PICHET";
+                        $replyData = new TextMessageBuilder($textReplyMessage);
+                        break;
+                       // }
                  case "PRINTER2":
                         $picFullSize2_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl2-1.JPG';
                         $picThumbnail2_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl2-1.JPG/240';

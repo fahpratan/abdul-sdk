@@ -62,6 +62,9 @@ $Name_tel = fopen('Tel.csv', 'r');
 while( ($objA = fgetcsv($Name_tel)) !== false) {
         $obj1[] = $objA;
       }
+$check = 0;
+if ($check==1){break;}
+}
 if(!is_null($events)){
     // ถ้ามีค่า สร้างตัวแปรเก็บ replyToken ไว้ใช้งาน
     $replyToken = $events['events'][0]['replyToken'];
@@ -127,8 +130,9 @@ if(!is_null($events)){
                  case "PRASAN":     
                         for ($i=1;$i<52;$i++){
                         $textReplyMessage = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];
-                        $replyData = new TextMessageBuilder($textReplyMessage);}
-                        break;
+                        $replyData = new TextMessageBuilder($textReplyMessage);
+                        $check = 1;
+                        }
                  case "PRINTER2":
                         $picFullSize2_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl2-1.JPG';
                         $picThumbnail2_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl2-1.JPG/240';

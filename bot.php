@@ -124,9 +124,10 @@ if(!is_null($events)){
                         $multiMessage1->add($replyData3);
                         $replyData = $multiMessage1;
                         break;
-                  case "PRASAN":     
-                        $textReplyMessage = "PICHET";
-                        $replyData = new TextMessageBuilder($textReplyMessage);
+                 case "PRASAN":     
+                        //for ($i=1;$i<52;$i++){
+                        $textReplyMessage = "E/N:".$obj1[1][0]." "."NAME:".$obj1[1][1]." ".$obj1[1][2]." "."Nickname:".$obj1[1][3]." "."ExtNo:".$obj1[1][4];
+                        $replyData = new TextMessageBuilder($textReplyMessage);//}
                         break;
                  case "PRINTER2":
                         $picFullSize2_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl2-1.JPG';

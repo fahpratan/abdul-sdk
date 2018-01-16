@@ -128,8 +128,12 @@ if(!is_null($events)){
                         break;
                   case $obj1[1][1]:     
                         for ($i=1;$i<52;$i++){
+                         ////
+                         if($obj1[1][1] == $obj1[$i][1]){
                         $textReplyMessage = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];
                         $replyData = new TextMessageBuilder($textReplyMessage);
+                         }
+                         ////
                         }
                         break;      
                  //case "PRASAN":     

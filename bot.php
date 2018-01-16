@@ -125,26 +125,18 @@ if(!is_null($events)){
                         $replyData = $multiMessage1;
                         break;
                  ////////case ask tell///////////
-                  case $obj1[1][1]: 
+                  for($j=1;$j<52;$j++){      
+                  case $obj1[$j][1]: 
                         for ($i=1;$i<52;$i++){
                          ////
-                         if($obj1[1][1] == $obj1[$i][1]){
+                         if($obj1[$j][1] == $obj1[$i][1]){
                         $textReplyMessage = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];
                         $replyData = new TextMessageBuilder($textReplyMessage);
                          }
                          ////
                         }
-                        break; 
-                   case $obj1[2][1]: 
-                        for ($i=1;$i<52;$i++){
-                         ////
-                         if($obj1[2][1] == $obj1[$i][1]){
-                        $textReplyMessage = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];
-                        $replyData = new TextMessageBuilder($textReplyMessage);
-                         }
-                         ////
-                        }
-                        break;  
+                        break; }
+                        }    
                  case "PRINTER2":
                         $picFullSize2_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl2-1.JPG';
                         $picThumbnail2_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl2-1.JPG/240';

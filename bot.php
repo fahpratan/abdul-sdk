@@ -124,8 +124,9 @@ if(!is_null($events)){
                         $multiMessage1->add($replyData3);
                         $replyData = $multiMessage1;
                         break;
-                  //for ($i=1;$i<52;$i++){
-                  case $obj1[2][1]: 
+                  for (($i=1;$i<52;$i++))
+                  do
+                  case $obj1[$i][1]: 
                         for ($i=1;$i<52;$i++){
                          ////
                          if($obj1[2][1] == $obj1[$i][1]){

@@ -1,4 +1,6 @@
 <?php
+
+?>                                          <?php
 // กรณีต้องการตรวจสอบการแจ้ง error ให้เปิด 3 บรรทัดล่างนี้ให้ทำงาน กรณีไม่ ให้ comment ปิดไป
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -107,7 +109,6 @@ if(!is_null($events)){
             case 'text':
                 $userMessage = strtoupper($userMessage); // แปลงเป็นตัวใหญ่ สำหรับทดสอบ
                 switch ($userMessage) {
-                  for ($i=1;$i<52;$i++){
                    case "PRINTER1":
                         $picFullSize1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1.JPG';
                         $picThumbnail1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1.JPG/240';
@@ -125,7 +126,7 @@ if(!is_null($events)){
                         $multiMessage1->add($replyData3);
                         $replyData = $multiMessage1;
                         break;
-                  case $obj1[$i][1]:     
+                  case $obj1[1][1]:     
                         for ($i=1;$i<52;$i++){
                         $textReplyMessage = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];
                         $replyData = new TextMessageBuilder($textReplyMessage);
@@ -496,7 +497,6 @@ if(!is_null($events)){
                         $textReplyMessage = " Service ไม่เข้าใจคำสั่งของคุณ";
                         $replyData = new TextMessageBuilder($textReplyMessage);         
                         break;                                      
-                }
                 }
                 break;
             default:

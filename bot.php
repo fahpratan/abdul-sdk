@@ -133,7 +133,7 @@ if(!is_null($events)){
                          }
                          ////
                         }
-                        break; }
+                        break; 
                  case $obj1[2][1]: 
                         for ($i=1;$i<52;$i++){
                          ////

@@ -103,13 +103,11 @@ if(!is_null($events)){
         $replyData = new TextMessageBuilder($textReplyMessage);     
     }
     if(!is_null($is_message)){
-        switch ($typeMessage){
-            case 'text':
-                $userMessage = strtoupper($userMessage); // แปลงเป็นตัวใหญ่ สำหรับทดสอบ
+        if($typeMessage ='text'){
 //////////////////////////////////////////////////////////////////////////////////////////
                $check = 0;
                   for ($i=1;$i<52;$i++){
-                  if($userMessage== $obj1[$i][1]){
+                  if(strtoupper($userMessage)== $obj1[$i][1]){
                     $textReplyMessage = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];
                     $replyData = new TextMessageBuilder($textReplyMessage);
                     $check =1;
@@ -120,11 +118,7 @@ if(!is_null($events)){
                     $textReplyMessage = " Service ไม่เข้าใจคำสั่งของคุณ";
                     $replyData = new TextMessageBuilder($textReplyMessage);    
                     }  
-////////////////////////////////////////////////////////////////////////////////                
-            default:
-                $textReplyMessage = json_encode($events);
-                $replyData = new TextMessageBuilder($textReplyMessage);         
-                break;  
+////////////////////////////////////////////////////////////////////////////////                 
         }
     }
 }

@@ -117,7 +117,53 @@ if(!is_null($events)){
                   if ($check==0){
                     $textReplyMessage = " Service ไม่เข้าใจคำสั่งของคุณ";
                     $replyData = new TextMessageBuilder($textReplyMessage);    
-                    }  
+                    } 
+                  if(strtoupper($userMessage) == "PRINTER"){
+                        // กำหนด action 4 ปุ่ม 4 ประเภท
+                        $actionBuilder = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'PRINTER1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'PRINTER2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'PRINTER3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+    
+                        );
+                        $imageUrl = 'https://thetomatos.com/wp-content/uploads/2016/02/printer-clipart-5.png';
+                        $replyData = new TemplateMessageBuilder('Button Template',
+                            new ButtonTemplateBuilder(
+                                    'IP Printer UTL', // กำหนดหัวเรื่อง
+                                    'Please select UTL', // กำหนดรายละเอียด
+                                    $imageUrl, // กำหนด url รุปภาพ
+                                    $actionBuilder  // กำหนด action object
+                            )
+                        );              
+                   $check =1; 
+                  }
+                  if(strtoupper($userMessage) == "PRINTER1") {
+                        $picFullSize1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1.JPG';
+                        $picThumbnail1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1.JPG/240';
+                        $replyData1 = new ImageMessageBuilder($picFullSize1,$picThumbnail1);
+                        $picFullSize2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1-2.JPG';
+                        $picThumbnail2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1-2.JPG/240';
+                        $replyData2 = new ImageMessageBuilder($picFullSize2,$picThumbnail2);
+                        $picFullSize3 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1-3.JPG';
+                        $picThumbnail3 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1-3.JPG/240';
+                        $replyData3 = new ImageMessageBuilder($picFullSize3,$picThumbnail3);
+                       
+                        $multiMessage1 = new MultiMessageBuilder;
+                        $multiMessage1->add($replyData1);
+                        $multiMessage1->add($replyData2);
+                        $multiMessage1->add($replyData3);
+                        $replyData = $multiMessage1;  
+                        $check =1
+                        }    
 ////////////////////////////////////////////////////////////////////////////////                 
         }
     }

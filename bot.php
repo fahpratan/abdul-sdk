@@ -107,7 +107,7 @@ if(!is_null($events)){
 //////////////////////////////////////////////////////////////////////////////////////////
                $check = 0;
                   for ($i=1;$i<52;$i++){
-                  if((strtoupper($userMessage) == $obj2[$p][0])||($userMessage) == $obj2[$p][1]){ 
+                  if(strtoupper($userMessage)== $obj1[$i][1]){
                     $textReplyMessage = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];
                     $replyData = new TextMessageBuilder($textReplyMessage);
                     $check =1;

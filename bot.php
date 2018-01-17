@@ -112,6 +112,7 @@ if(!is_null($events)){
                   if($userMessage== $obj1[$i][1]){
                     $textReplyMessage = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];
                     $replyData = new TextMessageBuilder($textReplyMessage);
+                    $check =1;
                     }
                     if ($check==1){break;}
                     }

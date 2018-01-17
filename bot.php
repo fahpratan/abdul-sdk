@@ -160,6 +160,78 @@ if(!is_null($events)){
                         $replyData = $multiMessage1;  
                         $check =1;
                         }
+                  if(strtoupper($userMessage) == "PRINTER2") {
+                        $picFullSize2_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl2-1.JPG';
+                        $picThumbnail2_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl2-1.JPG/240';
+                        $replyData = new ImageMessageBuilder($picFullSize2_1,$picThumbnail2_1);
+                        $check =1;
+                        }
+                 if(strtoupper($userMessage) == "PRINTER3") {
+                        $picFullSize3_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl3-1.JPG';
+                        $picThumbnail3_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl3-1.JPG/240';
+                        $replyData3_1 = new ImageMessageBuilder($picFullSize3_1,$picThumbnail3_1);
+                        $picFullSize3_2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl3-2.JPG';
+                        $picThumbnail3_2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl3-2.JPG/240';
+                        $replyData3_2 = new ImageMessageBuilder($picFullSize3_2,$picThumbnail3_2);
+                        $multiMessage3 = new MultiMessageBuilder;
+                        $multiMessage3->add($replyData3_1);
+                        $multiMessage3->add($replyData3_2);
+                        $replyData = $multiMessage3;
+                        $check =1;
+                        }   
+                 if(strtoupper($userMessage) == "MAP") {
+                        // กำหนด action 4 ปุ่ม 4 ประเภท
+                        $actionBuilder = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'LOCATION1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'LOCATION2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'LOCATION3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+    
+                        );
+                        $imageUrl = 'https://eteknix-eteknixltd.netdna-ssl.com/wp-content/uploads/2016/06/gps-location.png';
+                        $replyData = new TemplateMessageBuilder('Button Template',
+                            new ButtonTemplateBuilder(
+                                    'Location Utac Thai Limited', // กำหนดหัวเรื่อง
+                                    'Please select UTL', // กำหนดรายละเอียด
+                                    $imageUrl, // กำหนด url รุปภาพ
+                                    $actionBuilder  // กำหนด action object
+                            )
+                        );              
+                        $check =1;
+                        } 
+                  if(strtoupper($userMessage) == "LOCATION1") {
+                        $placeName = "Utac Thai Limited1";
+                        $placeAddress = "สุขุมวิท, 237 ซอย สุขุมวิท 105 Khwaeng Bang Na, Khet Bang Na, Krung Thep Maha Nakhon 10260";
+                        $latitude = 13.661728;
+                        $longitude = 100.608836;
+                        $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
+                        $check =1;
+                        } 
+                  if(strtoupper($userMessage) == "LOCATION2") {
+                        $placeName = "Utac Thai Limited2";
+                        $placeAddress = "บริษัท ยูแทคไทย จำกัด (สาขา 2) Tambon Bang Samak, Amphoe Bang Pakong, Chang Wat Chachoengsao 24180";
+                        $latitude = 13.661728;
+                        $longitude = 100.608836;
+                        $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
+                        $check =1;
+                        } 
+                  if(strtoupper($userMessage) == "LOCATION3") {
+                        $placeName = "Utac Thai Limited3";
+                        $placeAddress = "Bang Samak, Bang Pakong District, Chachoengsao 24180";
+                        $latitude = 13.581658;
+                        $longitude = 100.930541;
+                        $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
+                        $check =1;
+                        }  
+                  /////////////////       
                  if ($check==0){
                     $textReplyMessage = " Service ไม่เข้าใจคำสั่งของคุณ";
                     $replyData = new TextMessageBuilder($textReplyMessage);    

@@ -114,6 +114,13 @@ if(!is_null($events)){
                     }
                     if ($check==1){break;}
                     }
+///////////////////////////////////////////TEST SEND FILE/////////////////////////////////////////////////    
+                  if(strtoupper($userMessage) == "FILE"){
+                        $fileName = "file.txt";
+                        $fileSize = 4;
+                        $replyData = new FileMessage($fileName, $fileSize); 
+                        $check =1;
+                        } 
 //////////////////////////////////////////ASK TELL ALL////////////////////////////////////////////////                    
                     if(strtoupper($userMessage) == "TEL"){
                         // กำหนด action 4 ปุ่ม 4 ประเภท

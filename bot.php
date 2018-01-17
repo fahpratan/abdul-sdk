@@ -104,7 +104,7 @@ if(!is_null($events)){
     }
     if(!is_null($is_message)){
         if($typeMessage ='text'){
-//////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////ASK TELL////////////////////////////////////////////////
                $check = 0;
                   for ($i=1;$i<52;$i++){
                   if((strtoupper($userMessage) == $obj1[$i][1])||($userMessage) == $obj1[$i][3]||($userMessage) == $obj1[$i][0]){
@@ -114,6 +114,36 @@ if(!is_null($events)){
                     }
                     if ($check==1){break;}
                     }
+//////////////////////////////////////////ASK TELL ALL////////////////////////////////////////////////                    
+                    if(strtoupper($userMessage) == "TEL"){
+                        // กำหนด action 4 ปุ่ม 4 ประเภท
+                        $actionBuilder = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'TEL1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'TEL2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'TEL3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+    
+                        );
+                        $imageUrl = 'https://cdn3.iconfinder.com/data/icons/communication-1/100/old_phone-512.png';
+                        $replyData = new TemplateMessageBuilder('Button Template',
+                            new ButtonTemplateBuilder(
+                                    'Telephone Dept', // กำหนดหัวเรื่อง
+                                    'Please select UTL', // กำหนดรายละเอียด
+                                    $imageUrl, // กำหนด url รุปภาพ
+                                    $actionBuilder  // กำหนด action object
+                            )
+                        );              
+                       $check =1; 
+                       }
+///////////////////////////////////////////ASK PRINTER///////////////////////////////////////////////                    
                   if(strtoupper($userMessage) == "PRINTER"){
                         // กำหนด action 4 ปุ่ม 4 ประเภท
                         $actionBuilder = array(
@@ -178,7 +208,8 @@ if(!is_null($events)){
                         $multiMessage3->add($replyData3_2);
                         $replyData = $multiMessage3;
                         $check =1;
-                        }   
+                        }  
+///////////////////////////////////////////////////////////////////MAP//////////////////////////////////////////////// 
                  if(strtoupper($userMessage) == "MAP") {
                         // กำหนด action 4 ปุ่ม 4 ประเภท
                         $actionBuilder = array(
@@ -230,7 +261,190 @@ if(!is_null($events)){
                         $longitude = 100.930541;
                         $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
                         $check =1;
-                        }  
+                        } 
+///////////////////////////////////////////////////////////////////SERVER STATUS////////////////////////////////////////////////        
+                  if(strtoupper($userMessage) == "SERVER STATUS") {  
+                        // กำหนด action 4 ปุ่ม 4 ประเภท
+                        $actionBuilder = array(
+                            new MessageTemplateActionBuilder(
+                                'ACCESS POINT',// ข้อความแสดงในปุ่ม
+                                'ACCESS POINT' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'SWITCH',// ข้อความแสดงในปุ่ม
+                                'SWITCH' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'PRINTER',// ข้อความแสดงในปุ่ม
+                                'PRINTER' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                        );
+                        $imageUrl = 'https://cdn.iconscout.com/public/images/icon/premium/png-512/check-server-status-checklist-3ddf4743e512df9c-512x512.png';
+                        $replyData = new TemplateMessageBuilder('Button Template',
+                            new ButtonTemplateBuilder(
+                                    'Asset Status', // กำหนดหัวเรื่อง
+                                    'Please select Asset', // กำหนดรายละเอียด
+                                    $imageUrl, // กำหนด url รุปภาพ
+                                    $actionBuilder  // กำหนด action object
+                            )
+                        );              
+                        $check =1;
+                        }
+                    if(strtoupper($userMessage) == "ACCESS POINT") {    
+                        // กำหนด action 4 ปุ่ม 4 ประเภท
+                        $actionBuilder = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'ACCESS_P1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'ACCESS_P2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'ACCESS_P3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+    
+                        );
+                        $imageUrl = 'https://www.osisoft.com/uploadedImages/Micro_Sites/IIoT/Overview/Benefits-icon-170x170.png';
+                        $replyData = new TemplateMessageBuilder('Button Template',
+                            new ButtonTemplateBuilder(
+                                    'Access Point', // กำหนดหัวเรื่อง
+                                    'Please select UTL', // กำหนดรายละเอียด
+                                    $imageUrl, // กำหนด url รุปภาพ
+                                    $actionBuilder  // กำหนด action object
+                            )
+                        );              
+                        $check =1;
+                        } 
+                    if(strtoupper($userMessage) == "SWITCH") {
+                        // กำหนด action 4 ปุ่ม 4 ประเภท
+                        $actionBuilder = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'SWITCH1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'SWITCH2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'SWITCH3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+    
+                        );
+                        $imageUrl = 'https://www.iconshock.com/v2/image/Stroke/Computer_gadgets/switch';
+                        $replyData = new TemplateMessageBuilder('Button Template',
+                            new ButtonTemplateBuilder(
+                                    'Switch', // กำหนดหัวเรื่อง
+                                    'Please select UTL', // กำหนดรายละเอียด
+                                    $imageUrl, // กำหนด url รุปภาพ
+                                    $actionBuilder  // กำหนด action object
+                            )
+                        );              
+                        $check =1;
+                        } 
+                   if(strtoupper($userMessage) == "PRINTER") {    
+                        // กำหนด action 4 ปุ่ม 4 ประเภท
+                        $actionBuilder = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'PRINTER1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'PRINTER2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'PRINTER3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+    
+                        );
+                        $imageUrl = 'https://thetomatos.com/wp-content/uploads/2016/02/printer-clipart-5.png';
+                        $replyData = new TemplateMessageBuilder('Button Template',
+                            new ButtonTemplateBuilder(
+                                    'IP Printer UTL', // กำหนดหัวเรื่อง
+                                    'Please select UTL', // กำหนดรายละเอียด
+                                    $imageUrl, // กำหนด url รุปภาพ
+                                    $actionBuilder  // กำหนด action object
+                            )
+                        );              
+                        $check =1;
+                        } 
+///////////////////////////////////////////////////////////////////HELP////////////////////////////////////////////////
+                     if(strtoupper($userMessage) == "HELP") { 
+                        // กำหนด action 4 ปุ่ม 4 ประเภท
+                     $actionBuilder = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'LOCATION1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                           new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'LOCATION2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'LOCATION3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                        );
+                   $actionBuilder2 = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'PRINTER1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                           new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'PRINTER2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'PRINTER3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                        );
+                   $actionBuilder3 = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'TEL1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                           new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'TEL2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'TEL3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                        );
+                        $replyData = new TemplateMessageBuilder('Carousel',
+                            new CarouselTemplateBuilder(
+                                array(
+                                    new CarouselColumnTemplateBuilder(
+                                        'Location Utac Thai Limited',
+                                        'Please select UTL',
+                                        'https://articles-images.sftcdn.net/wp-content/uploads/sites/3/2016/03/1424198413_079371_1424198643_noticia_normal.jpg',
+                                        $actionBuilder
+                                    ),
+                                    new CarouselColumnTemplateBuilder(
+                                        'IP Printer UTL',
+                                        'Please select UTL',
+                                        'https://thetomatos.com/wp-content/uploads/2016/02/printer-clipart-5.png',
+                                        $actionBuilder2
+                                    ),
+                                    new CarouselColumnTemplateBuilder(
+                                        'Telephone Dept',
+                                        'Please select UTL',
+                                        'https://cdn3.iconfinder.com/data/icons/communication-1/100/old_phone-512.png',
+                                        $actionBuilder3
+                                    ),                                 
+                                )
+                            )
+                        );
+                        $check =1; 
+                        }                                                      
                   /////////////////       
                  if ($check==0){
                     $textReplyMessage = " Service ไม่เข้าใจคำสั่งของคุณ";

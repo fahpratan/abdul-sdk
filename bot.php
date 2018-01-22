@@ -454,17 +454,6 @@ if(!is_null($events)){
 ////////////////////////////////////////////////////////////////////////////////                 
         }
 ////////////////////////////////////////////////////////////////////////////////
-      if($typeMessage ='file'){
-///////////////////////////////test send file////////////////////
-                  $check =0;
-                  if(strtoupper($userMessage) == "FILE"){
-                        $fileName = "file.txt";
-                        $fileSize = 4;
-                        $replyData = new FileMessage($fileName, $fileSize); 
-                        $check =1;
-                        } 
-                    if ($check==1){break;}
-                    }
       }
     }
 }

@@ -17,9 +17,9 @@ require_once 'bot_settings.php';
 use LINE\LINEBot;
 use LINE\LINEBot\HTTPClient;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
-//use LINE\LINEBot\Event;
-//use LINE\LINEBot\Event\BaseEvent;
-//use LINE\LINEBot\Event\MessageEvent;
+use LINE\LINEBot\Event;
+use LINE\LINEBot\Event\BaseEvent;
+use LINE\LINEBot\Event\MessageEvent;
 use LINE\LINEBot\MessageBuilder;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 use LINE\LINEBot\MessageBuilder\StickerMessageBuilder;
@@ -54,206 +54,410 @@ $bot = new LINEBot($httpClient, array('channelSecret' => LINE_MESSAGE_CHANNEL_SE
  
 // คำสั่งรอรับการส่งค่ามาของ LINE Messaging API
 $content = file_get_contents('php://input');
- 
-// กำหนดค่า signature สำหรับตรวจสอบข้อมูลที่ส่งมาว่าเป็นข้อมูลจาก LINE
-$hash = hash_hmac('sha256', $content, LINE_MESSAGE_CHANNEL_SECRET, true);
-$signature = base64_encode($hash);
- 
-// แปลงค่าข้อมูลที่ได้รับจาก LINE เป็น array ของ Event Object
-$events = $bot->parseEventRequest($content, $signature);
-$eventObj = $events[0]; // Event Object ของ array แรก
- 
-// ดึงค่าประเภทของ Event มาไว้ในตัวแปร มีทั้งหมด 7 event
-$eventType = $eventObj->getType();
- 
-// สร้างตัวแปร ไว้เก็บ sourceId ของแต่ละประเภท
-$userId = NULL;
-$groupId = NULL;
-$roomId = NULL;
-// สร้างตัวแปร replyToken สำหรับกรณีใช้ตอบกลับข้อความ
-$replyToken = NULL;
-// สร้างตัวแปร ไว้เก็บค่าว่าเป้น Event ประเภทไหน
-$eventMessage = NULL;
-$eventPostback = NULL;
-$eventJoin = NULL;
-$eventLeave = NULL;
-$eventFollow = NULL;
-$eventUnfollow = NULL;
-$eventBeacon = NULL;
-// เงื่อนไขการกำหนดประเภท Event 
-switch($eventType){
-    case 'message': $eventMessage = true; break;    
-    case 'postback': $eventPostback = true; break;  
-    case 'join': $eventJoin = true; break;  
-    case 'leave': $eventLeave = true; break;    
-    case 'follow': $eventFollow = true; break;  
-    case 'unfollow': $eventUnfollow = true; break;  
-    case 'beacon': $eventBeacon = true; break;                          
-}
-// สร้างตัวแปรเก็บค่า groupId กรณีเป็น Event ที่เกิดขึ้นใน GROUP
-if($eventObj->isGroupEvent()){
-    $groupId = $eventObj->getGroupId();  
-}
-// สร้างตัวแปรเก็บค่า roomId กรณีเป็น Event ที่เกิดขึ้นใน ROOM
-if($eventObj->isRoomEvent()){
-    $roomId = $eventObj->getRoomId();            
-}
-// ดึงค่า replyToken มาไว้ใช้งาน ทุกๆ Event ที่ไม่ใช่ Leave และ Unfollow Event
-if(is_null($eventLeave) && is_null($eventUnfollow)){
-    $replyToken = $eventObj->getReplyToken();    
-}
-// ดึงค่า userId มาไว้ใช้งาน ทุกๆ Event ที่ไม่ใช่ Leave Event
-if(is_null($eventLeave)){
-    $userId = $eventObj->getUserId();
-}
-// ตรวจสอบถ้าเป็น Join Event ให้ bot ส่งข้อความใน GROUP ว่าเข้าร่วม GROUP แล้ว
-if(!is_null($eventJoin)){
-    $textReplyMessage = "ขอเข้ากลุ่มด้วยน่ะ GROUP ID:: ".$groupId;
-    $replyData = new TextMessageBuilder($textReplyMessage);                 
-}
-// ตรวจสอบถ้าเป็น Leave Event เมื่อ bot ออกจากกลุ่ม
-if(!is_null($eventLeave)){
-     
-}
-// ตรวจสอบถ้าเป้น Message Event และกำหนดค่าตัวแปรต่างๆ
-if(!is_null($eventMessage)){
-    // สร้างตัวแปรเก็ยค่าประเภทของ Message จากทั้งหมด 8 ประเภท
-    $typeMessage = $eventObj->getMessageType();  
-    //  text | image | sticker | location | audio | video | imagemap | template 
-    // ถ้าเป็นข้อความ
-    if($typeMessage=='text'){
-        $userMessage = $eventObj->getText(); // เก็บค่าข้อความที่ผู้ใช้พิมพ์
-    }
-    // ถ้าเป็น sticker
-    if($typeMessage=='sticker'){
-        $packageId = $eventObj->getPackageId();
-        $stickerId = $eventObj->getStickerId();
-    }
-    // ถ้าเป็น location
-    if($typeMessage=='location'){
-        $locationTitle = $eventObj->getTitle();
-        $locationAddress = $eventObj->getAddress();
-        $locationLatitude = $eventObj->getLatitude();
-        $locationLongitude = $eventObj->getLongitude();
-    }       
-    // เก็บค่า id ของข้อความ
-    $idMessage = $eventObj->getMessageId();  
-}
- 
-// ส่วนของการทำงาน
+// แปลงข้อความรูปแบบ JSON  ให้อยู่ในโครงสร้างตัวแปร array
+$events = json_decode($content, true);
+//DATA tell
+$obj1 = array();
+$Name_tel = fopen('Tel.csv', 'r');
+while( ($objA = fgetcsv($Name_tel)) !== false) {
+        $obj1[] = $objA;
+      }
 if(!is_null($events)){
-    // ถ้าเป็น Postback Event
-    if(!is_null($eventPostback)){
+    // ถ้ามีค่า สร้างตัวแปรเก็บ replyToken ไว้ใช้งาน
+    $replyToken = $events['events'][0]['replyToken'];
+    $userID = $events['events'][0]['source']['userId'];
+    $sourceType = $events['events'][0]['source']['type'];        
+    $is_postback = NULL;
+    $is_message = NULL;
+    if(isset($events['events'][0]) && array_key_exists('message',$events['events'][0])){
+        $is_message = true;
+        $typeMessage = $events['events'][0]['message']['type'];
+        $userMessage = $events['events'][0]['message']['text'];     
+        $idMessage = $events['events'][0]['message']['id'];             
+    }
+    if(isset($events['events'][0]) && array_key_exists('postback',$events['events'][0])){
+        $is_postback = true;
         $dataPostback = NULL;
+        parse_str($events['events'][0]['postback']['data'],$dataPostback);;
         $paramPostback = NULL;
-        // แปลงข้อมูลจาก Postback Data เป็น array
-        parse_str($eventObj->getPostbackData(),$dataPostback);
-        // ดึงค่า params กรณีมีค่า params
-        $paramPostback = $eventObj->getPostbackParams();
-        // ทดสอบแสดงข้อความที่เกิดจาก Postaback Event
-        $textReplyMessage = "ข้อความจาก Postback Event Data = ";        
-        $textReplyMessage.= json_encode($dataPostback);
-        $textReplyMessage.= json_encode($paramPostback);
+        if(array_key_exists('params',$events['events'][0]['postback'])){
+            if(array_key_exists('date',$events['events'][0]['postback']['params'])){
+                $paramPostback = $events['events'][0]['postback']['params']['date'];
+            }
+            if(array_key_exists('time',$events['events'][0]['postback']['params'])){
+                $paramPostback = $events['events'][0]['postback']['params']['time'];
+            }
+            if(array_key_exists('datetime',$events['events'][0]['postback']['params'])){
+                $paramPostback = $events['events'][0]['postback']['params']['datetime'];
+            }                       
+        }
+    }   
+    if(!is_null($is_postback)){
+        $textReplyMessage = "ข้อความจาก Postback Event Data = ";
+        if(is_array($dataPostback)){
+            $textReplyMessage.= json_encode($dataPostback);
+        }
+        if(!is_null($paramPostback)){
+            $textReplyMessage.= " \r\nParams = ".$paramPostback;
+        }
         $replyData = new TextMessageBuilder($textReplyMessage);     
     }
-    // ถ้าเป้น Message Event 
-    if(!is_null($eventMessage)){
-        switch ($typeMessage){ // กำหนดเงื่อนไขการทำงานจาก ประเภทของ message
-            case 'text':  // ถ้าเป็นข้อความ
-                $userMessage = strtolower($userMessage); // แปลงเป็นตัวเล็ก สำหรับทดสอบ
-                switch ($userMessage) {
-                    case "t_b":
+    if(!is_null($is_message)){
+        if($typeMessage ='text'){
+//////////////////////////////////////////ASK TELL////////////////////////////////////////////////
+               $check = 0;
+                  for ($i=1;$i<52;$i++){
+                  if((strtoupper($userMessage) == $obj1[$i][1])||($userMessage) == $obj1[$i][3]||($userMessage) == $obj1[$i][0]){
+                    $textReplyMessage = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];
+                    $replyData = new TextMessageBuilder($textReplyMessage);
+                    $check =1;
+                    }
+                    if ($check==1){break;}
+                    }
+///////////////////////////////////////////TEST SEND FILE/////////////////////////////////////////////////    
+                  if(strtoupper($userMessage) == "FILE"){
+                        $fileName = "file.txt";
+                        $fileSize = 4;
+                        $replyData = new FileMessage($fileName, $fileSize); 
+                        $check =1;
+                        } 
+//////////////////////////////////////////ASK TELL ALL////////////////////////////////////////////////                    
+                    if(strtoupper($userMessage) == "TEL"){
                         // กำหนด action 4 ปุ่ม 4 ประเภท
                         $actionBuilder = array(
                             new MessageTemplateActionBuilder(
-                                'Message Template',// ข้อความแสดงในปุ่ม
-                                'This is Text' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'TEL1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
-                            new UriTemplateActionBuilder(
-                                'Uri Template', // ข้อความแสดงในปุ่ม
-                                'https://www.ninenik.com'
+                            new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'TEL2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
-                            new DatetimePickerTemplateActionBuilder(
-                                'Datetime Picker', // ข้อความแสดงในปุ่ม
-                                http_build_query(array(
-                                    'action'=>'reservation',
-                                    'person'=>5
-                                )), // ข้อมูลที่จะส่งไปใน webhook ผ่าน postback event
-                                'datetime', // date | time | datetime รูปแบบข้อมูลที่จะส่ง ในที่นี้ใช้ datatime
-                                substr_replace(date("Y-m-d H:i"),'T',10,1), // วันที่ เวลา ค่าเริ่มต้นที่ถูกเลือก
-                                substr_replace(date("Y-m-d H:i",strtotime("+5 day")),'T',10,1), //วันที่ เวลา มากสุดที่เลือกได้
-                                substr_replace(date("Y-m-d H:i"),'T',10,1) //วันที่ เวลา น้อยสุดที่เลือกได้
-                            ),      
-                            new PostbackTemplateActionBuilder(
-                                'Postback', // ข้อความแสดงในปุ่ม
-                                http_build_query(array(
-                                    'action'=>'buy',
-                                    'item'=>100
-                                )) // ข้อมูลที่จะส่งไปใน webhook ผ่าน postback event
-    //                          'Postback Text'  // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-                            ),      
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'TEL3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+    
                         );
-                        $imageUrl = 'https://www.mywebsite.com/imgsrc/photos/w/simpleflower';
+                        $imageUrl = 'https://cdn3.iconfinder.com/data/icons/communication-1/100/old_phone-512.png';
                         $replyData = new TemplateMessageBuilder('Button Template',
                             new ButtonTemplateBuilder(
-                                    'button template builder', // กำหนดหัวเรื่อง
-                                    'Please select', // กำหนดรายละเอียด
+                                    'Telephone Dept', // กำหนดหัวเรื่อง
+                                    'Please select UTL', // กำหนดรายละเอียด
                                     $imageUrl, // กำหนด url รุปภาพ
                                     $actionBuilder  // กำหนด action object
                             )
                         );              
-                        break;                                          
-                    case "p":
-                            if(!is_null($groupId) || !is_null($roomId)){
-                                if($eventObj->isGroupEvent()){
-                                    $response = $bot->getGroupMemberProfile($groupId, $userId);
-                                }
-                                if($eventObj->isRoomEvent()){
-                                    $response = $bot->getRoomMemberProfile($roomId, $userId);    
-                                }
-                            }else{
-                                $response = $bot->getProfile($userId);
-                            }
-                            if ($response->isSucceeded()) {
-                                $userData = $response->getJSONDecodedBody(); // return array     
-                                // $userData['userId']
-                                // $userData['displayName']
-                                // $userData['pictureUrl']
-                                // $userData['statusMessage']
-                                $textReplyMessage = 'สวัสดีครับ คุณ '.$userData['displayName'];     
-                            }else{
-                                $textReplyMessage = 'สวัสดีครับ คุณคือใคร';
-                            }
-                            $replyData = new TextMessageBuilder($textReplyMessage);                                                 
-                        break;                          
-                    case "l": // เงื่อนไขทดสอบถ้ามีใครพิมพ์ L ใน GROUP / ROOM แล้วให้ bot ออกจาก GROUP / ROOM
-                            $sourceId = $eventObj->getEventSourceId();
-                            if($eventObj->isGroupEvent()){
-                                $bot->leaveGroup($sourceId);
-                            }
-                            if($eventObj->isRoomEvent()){
-                                $bot->leaveRoom($sourceId);  
-                            }                                               
-                            $textReplyMessage = 'เชิญ bot ออกจาก Group / Room'; 
-                            $replyData = new TextMessageBuilder($textReplyMessage);                                                 
-                        break;
-                  case "location"
+                       $check =1; 
+                       }
+///////////////////////////////////////////ASK PRINTER///////////////////////////////////////////////                    
+                  if(strtoupper($userMessage) == "PRINTER"){
+                        // กำหนด action 4 ปุ่ม 4 ประเภท
+                        $actionBuilder = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'PRINTER1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'PRINTER2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'PRINTER3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+    
+                        );
+                        $imageUrl = 'https://thetomatos.com/wp-content/uploads/2016/02/printer-clipart-5.png';
+                        $replyData = new TemplateMessageBuilder('Button Template',
+                            new ButtonTemplateBuilder(
+                                    'IP Printer UTL', // กำหนดหัวเรื่อง
+                                    'Please select UTL', // กำหนดรายละเอียด
+                                    $imageUrl, // กำหนด url รุปภาพ
+                                    $actionBuilder  // กำหนด action object
+                            )
+                        );              
+                   $check =1; 
+                  }
+                  if(strtoupper($userMessage) == "PRINTER1") {
+                        $picFullSize1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1.JPG';
+                        $picThumbnail1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1.JPG/240';
+                        $replyData1 = new ImageMessageBuilder($picFullSize1,$picThumbnail1);
+                        $picFullSize2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1-2.JPG';
+                        $picThumbnail2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1-2.JPG/240';
+                        $replyData2 = new ImageMessageBuilder($picFullSize2,$picThumbnail2);
+                        $picFullSize3 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1-3.JPG';
+                        $picThumbnail3 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl1-3.JPG/240';
+                        $replyData3 = new ImageMessageBuilder($picFullSize3,$picThumbnail3);
+                       
+                        $multiMessage1 = new MultiMessageBuilder;
+                        $multiMessage1->add($replyData1);
+                        $multiMessage1->add($replyData2);
+                        $multiMessage1->add($replyData3);
+                        $replyData = $multiMessage1;  
+                        $check =1;
+                        }
+                  if(strtoupper($userMessage) == "PRINTER2") {
+                        $picFullSize2_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl2-1.JPG';
+                        $picThumbnail2_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl2-1.JPG/240';
+                        $replyData = new ImageMessageBuilder($picFullSize2_1,$picThumbnail2_1);
+                        $check =1;
+                        }
+                 if(strtoupper($userMessage) == "PRINTER3") {
+                        $picFullSize3_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl3-1.JPG';
+                        $picThumbnail3_1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl3-1.JPG/240';
+                        $replyData3_1 = new ImageMessageBuilder($picFullSize3_1,$picThumbnail3_1);
+                        $picFullSize3_2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl3-2.JPG';
+                        $picThumbnail3_2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/ip-printer-utl3-2.JPG/240';
+                        $replyData3_2 = new ImageMessageBuilder($picFullSize3_2,$picThumbnail3_2);
+                        $multiMessage3 = new MultiMessageBuilder;
+                        $multiMessage3->add($replyData3_1);
+                        $multiMessage3->add($replyData3_2);
+                        $replyData = $multiMessage3;
+                        $check =1;
+                        }                   
+///////////////////////////////////////////////////////////////////MAP//////////////////////////////////////////////// 
+                 if(strtoupper($userMessage) == "MAP") {
+                        // กำหนด action 4 ปุ่ม 4 ประเภท
+                        $actionBuilder = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'LOCATION1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'LOCATION2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'LOCATION3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+    
+                        );
+                        $imageUrl = 'https://eteknix-eteknixltd.netdna-ssl.com/wp-content/uploads/2016/06/gps-location.png';
+                        $replyData = new TemplateMessageBuilder('Button Template',
+                            new ButtonTemplateBuilder(
+                                    'Location Utac Thai Limited', // กำหนดหัวเรื่อง
+                                    'Please select UTL', // กำหนดรายละเอียด
+                                    $imageUrl, // กำหนด url รุปภาพ
+                                    $actionBuilder  // กำหนด action object
+                            )
+                        );              
+                        $check =1;
+                        } 
+                  if(strtoupper($userMessage) == "LOCATION1") {
                         $placeName = "Utac Thai Limited1";
                         $placeAddress = "สุขุมวิท, 237 ซอย สุขุมวิท 105 Khwaeng Bang Na, Khet Bang Na, Krung Thep Maha Nakhon 10260";
                         $latitude = 13.661728;
                         $longitude = 100.608836;
                         $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
-                    default:
-                        $textReplyMessage = " คุณไม่ได้พิมพ์ ค่า ตามที่กำหนด";
-                        $replyData = new TextMessageBuilder($textReplyMessage);         
-                        break;                                      
-                }
-                break;                                                  
-            default:
-                // กรณีทดสอบเงื่อนไขอื่นๆ ผู้ใช้ไม่ได้ส่งเป็นข้อความ
-                $textReplyMessage = 'สวัสดีครับ คุณ '.$typeMessage;         
-                $replyData = new TextMessageBuilder($textReplyMessage);         
-                break;  
+                        $check =1;
+                        } 
+                  if(strtoupper($userMessage) == "LOCATION2") {
+                        $placeName = "Utac Thai Limited2";
+                        $placeAddress = "บริษัท ยูแทคไทย จำกัด (สาขา 2) Tambon Bang Samak, Amphoe Bang Pakong, Chang Wat Chachoengsao 24180";
+                        $latitude = 13.661728;
+                        $longitude = 100.608836;
+                        $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
+                        $check =1;
+                        } 
+                  if(strtoupper($userMessage) == "LOCATION3") {
+                        $placeName = "Utac Thai Limited3";
+                        $placeAddress = "Bang Samak, Bang Pakong District, Chachoengsao 24180";
+                        $latitude = 13.581658;
+                        $longitude = 100.930541;
+                        $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
+                        $check =1;
+                        } 
+///////////////////////////////////////////////////////////////////SERVER STATUS////////////////////////////////////////////////        
+                  if(strtoupper($userMessage) == "SERVER STATUS") {  
+                        // กำหนด action 4 ปุ่ม 4 ประเภท
+                        $actionBuilder = array(
+                            new MessageTemplateActionBuilder(
+                                'ACCESS POINT',// ข้อความแสดงในปุ่ม
+                                'ACCESS POINT' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'SWITCH',// ข้อความแสดงในปุ่ม
+                                'SWITCH' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'PRINTER',// ข้อความแสดงในปุ่ม
+                                'PRINTER' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                        );
+                        $imageUrl = 'https://cdn.iconscout.com/public/images/icon/premium/png-512/check-server-status-checklist-3ddf4743e512df9c-512x512.png';
+                        $replyData = new TemplateMessageBuilder('Button Template',
+                            new ButtonTemplateBuilder(
+                                    'Asset Status', // กำหนดหัวเรื่อง
+                                    'Please select Asset', // กำหนดรายละเอียด
+                                    $imageUrl, // กำหนด url รุปภาพ
+                                    $actionBuilder  // กำหนด action object
+                            )
+                        );              
+                        $check =1;
+                        }
+                    if(strtoupper($userMessage) == "ACCESS POINT") {    
+                        // กำหนด action 4 ปุ่ม 4 ประเภท
+                        $actionBuilder = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'ACCESS_P1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'ACCESS_P2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'ACCESS_P3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+    
+                        );
+                        $imageUrl = 'https://www.osisoft.com/uploadedImages/Micro_Sites/IIoT/Overview/Benefits-icon-170x170.png';
+                        $replyData = new TemplateMessageBuilder('Button Template',
+                            new ButtonTemplateBuilder(
+                                    'Access Point', // กำหนดหัวเรื่อง
+                                    'Please select UTL', // กำหนดรายละเอียด
+                                    $imageUrl, // กำหนด url รุปภาพ
+                                    $actionBuilder  // กำหนด action object
+                            )
+                        );              
+                        $check =1;
+                        } 
+                    if(strtoupper($userMessage) == "SWITCH") {
+                        // กำหนด action 4 ปุ่ม 4 ประเภท
+                        $actionBuilder = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'SWITCH1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'SWITCH2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'SWITCH3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+    
+                        );
+                        $imageUrl = 'https://www.iconshock.com/v2/image/Stroke/Computer_gadgets/switch';
+                        $replyData = new TemplateMessageBuilder('Button Template',
+                            new ButtonTemplateBuilder(
+                                    'Switch', // กำหนดหัวเรื่อง
+                                    'Please select UTL', // กำหนดรายละเอียด
+                                    $imageUrl, // กำหนด url รุปภาพ
+                                    $actionBuilder  // กำหนด action object
+                            )
+                        );              
+                        $check =1;
+                        } 
+                   if(strtoupper($userMessage) == "PRINTER") {    
+                        // กำหนด action 4 ปุ่ม 4 ประเภท
+                        $actionBuilder = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'PRINTER1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'PRINTER2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'PRINTER3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+    
+                        );
+                        $imageUrl = 'https://thetomatos.com/wp-content/uploads/2016/02/printer-clipart-5.png';
+                        $replyData = new TemplateMessageBuilder('Button Template',
+                            new ButtonTemplateBuilder(
+                                    'IP Printer UTL', // กำหนดหัวเรื่อง
+                                    'Please select UTL', // กำหนดรายละเอียด
+                                    $imageUrl, // กำหนด url รุปภาพ
+                                    $actionBuilder  // กำหนด action object
+                            )
+                        );              
+                        $check =1;
+                        } 
+///////////////////////////////////////////////////////////////////HELP////////////////////////////////////////////////
+                     if(strtoupper($userMessage) == "HELP") { 
+                        // กำหนด action 4 ปุ่ม 4 ประเภท
+                     $actionBuilder = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'LOCATION1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                           new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'LOCATION2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'LOCATION3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                        );
+                   $actionBuilder2 = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'PRINTER1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                           new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'PRINTER2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'PRINTER3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                        );
+                   $actionBuilder3 = array(
+                            new MessageTemplateActionBuilder(
+                                'UTL1',// ข้อความแสดงในปุ่ม
+                                'TEL1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                           new MessageTemplateActionBuilder(
+                                'UTL2',// ข้อความแสดงในปุ่ม
+                                'TEL2' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL3',// ข้อความแสดงในปุ่ม
+                                'TEL3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                        );
+                        $replyData = new TemplateMessageBuilder('Carousel',
+                            new CarouselTemplateBuilder(
+                                array(
+                                    new CarouselColumnTemplateBuilder(
+                                        'Location Utac Thai Limited',
+                                        'Please select UTL',
+                                        'https://articles-images.sftcdn.net/wp-content/uploads/sites/3/2016/03/1424198413_079371_1424198643_noticia_normal.jpg',
+                                        $actionBuilder
+                                    ),
+                                    new CarouselColumnTemplateBuilder(
+                                        'IP Printer UTL',
+                                        'Please select UTL',
+                                        'https://thetomatos.com/wp-content/uploads/2016/02/printer-clipart-5.png',
+                                        $actionBuilder2
+                                    ),
+                                    new CarouselColumnTemplateBuilder(
+                                        'Telephone Dept',
+                                        'Please select UTL',
+                                        'https://cdn3.iconfinder.com/data/icons/communication-1/100/old_phone-512.png',
+                                        $actionBuilder3
+                                    ),                                 
+                                )
+                            )
+                        );
+                        $check =1; 
+                        }                                                      
+//////////////////////////////////////////////////////////////////////////////////////       
+                 if ($check==0){
+                    $textReplyMessage = " Service ไม่เข้าใจคำสั่งของคุณ";
+                    $replyData = new TextMessageBuilder($textReplyMessage);    
+                    }     
+////////////////////////////////////////////////////////////////////////////////                 
         }
     }
 }
@@ -262,6 +466,7 @@ if ($response->isSucceeded()) {
     echo 'Succeeded!';
     return;
 }
+ 
 // Failed
 echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 ?>

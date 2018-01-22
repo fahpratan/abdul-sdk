@@ -116,10 +116,12 @@ if(!is_null($events)){
                     }
 ///////////////////////////////////////////TEST SEND FILE/////////////////////////////////////////////////    
                   if(strtoupper($userMessage) == "FILE"){
-                        $fileName = "file.txt";
+                        $fileName = 'file.txt';
                         $fileSize = 4;
                         $replyData = new FileMessage($fileName, $fileSize); 
                         $check =1;
+                        //$packageId = $eventObj->getFileName();
+                        //$stickerId = $eventObj->getFileSize();
                         } 
 //////////////////////////////////////////ASK TELL ALL////////////////////////////////////////////////                    
                     if(strtoupper($userMessage) == "TEL"){

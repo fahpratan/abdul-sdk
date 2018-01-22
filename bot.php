@@ -236,7 +236,13 @@ if(!is_null($events)){
                             }                                               
                             $textReplyMessage = 'เชิญ bot ออกจาก Group / Room'; 
                             $replyData = new TextMessageBuilder($textReplyMessage);                                                 
-                        break;                                                                                                                                                                                                                                                                      
+                        break;
+                  case "location"
+                        $placeName = "Utac Thai Limited1";
+                        $placeAddress = "สุขุมวิท, 237 ซอย สุขุมวิท 105 Khwaeng Bang Na, Khet Bang Na, Krung Thep Maha Nakhon 10260";
+                        $latitude = 13.661728;
+                        $longitude = 100.608836;
+                        $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
                     default:
                         $textReplyMessage = " คุณไม่ได้พิมพ์ ค่า ตามที่กำหนด";
                         $replyData = new TextMessageBuilder($textReplyMessage);         

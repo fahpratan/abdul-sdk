@@ -17,9 +17,10 @@ require_once 'bot_settings.php';
 use LINE\LINEBot;
 use LINE\LINEBot\HTTPClient;
 use LINE\LINEBot\HTTPClient\CurlHTTPClient;
-//use LINE\LINEBot\Event;
-//use LINE\LINEBot\Event\BaseEvent;
-//use LINE\LINEBot\Event\MessageEvent;
+use LINE\LINEBot\Event;
+use LINE\LINEBot\Event\BaseEvent;
+use LINE\LINEBot\Event\MessageEvent;
+use LINE\LINEBot\Event\MessageEvent\FileMessage;
 use LINE\LINEBot\MessageBuilder;
 use LINE\LINEBot\MessageBuilder\TextMessageBuilder;
 use LINE\LINEBot\MessageBuilder\StickerMessageBuilder;
@@ -114,13 +115,6 @@ if(!is_null($events)){
                     }
                     if ($check==1){break;}
                     }
-///////////////////////////////////////////TEST SEND FILE/////////////////////////////////////////////////    
-                  if(strtoupper($userMessage) == "FILE"){
-                        $fileName = "file.txt";
-                        $fileSize = 4;
-                        $replyData = new FileMessage($fileName, $fileSize); 
-                        $check =1;
-                        } 
 //////////////////////////////////////////ASK TELL ALL////////////////////////////////////////////////                    
                     if(strtoupper($userMessage) == "TEL"){
                         // กำหนด action 4 ปุ่ม 4 ประเภท
@@ -459,6 +453,19 @@ if(!is_null($events)){
                     }     
 ////////////////////////////////////////////////////////////////////////////////                 
         }
+////////////////////////////////////////////////////////////////////////////////
+      if($typeMessage ='file'){
+///////////////////////////////test send file////////////////////
+                  $check =0;
+                  if(strtoupper($userMessage) == "FILE"){
+                        $fileName = "file.txt";
+                        $fileSize = 4;
+                        $replyData = new FileMessage($fileName, $fileSize); 
+                        $check =1;
+                        } 
+                    if ($check==1){break;}
+                    }
+      }
     }
 }
 $response = $bot->replyMessage($replyToken,$replyData);

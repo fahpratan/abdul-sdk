@@ -123,6 +123,13 @@ if(!is_null($events)){
                         //$packageId = $eventObj->getFileName();
                         //$stickerId = $eventObj->getFileSize();
                         } 
+////////////////////////////////////////VIDEO/////////////////////////////////////
+                  if(strtoupper($userMessage) == "V"){
+                        $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/sampleimage/240';
+                        $videoUrl = "https://www.ninenik.com/line/simplevideo.mp4";             
+                        $replyData = new VideoMessageBuilder($videoUrl,$picThumbnail);
+                        $check =1; 
+                       }
 //////////////////////////////////////////ASK TELL ALL////////////////////////////////////////////////                    
                     if(strtoupper($userMessage) == "TEL"){
                         // กำหนด action 4 ปุ่ม 4 ประเภท

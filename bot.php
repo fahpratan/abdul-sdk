@@ -126,7 +126,7 @@ if(!is_null($events)){
 ////////////////////////////////////////VIDEO/////////////////////////////////////
                   if(strtoupper($userMessage) == "V"){
                         $picThumbnail = 'https://www.ninenik.com/imgsrc/photos/f/sampleimage/240';
-                        $videoUrl = "https://github.com/fahpratan/abdul-sdk/blob/master/video/Configure%20Desktop%20Alert%20Notification%20in%20Microsoft%20Outlook.mp4";            
+                        $videoUrl = "https://www.ninenik.com/line/simplevideo.mp4";            
                         $replyData = new VideoMessageBuilder($videoUrl,$picThumbnail);
                         $check =1; 
                        }

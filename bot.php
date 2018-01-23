@@ -126,7 +126,7 @@ if(!is_null($events)){
 ////////////////////////////////////////VIDEO/////////////////////////////////////
                   if(strtoupper($userMessage) == "V"){
                         $picThumbnail = 'https://www.ninenik.com/imgsrc/photos/f/sampleimage/240';
-                        $videoUrl = "https://www.ninenik.com/line/simplevideo.mp4";            
+                        $videoUrl = "https://www.youtube.com/embed/i2fRv5EILiM?ecver=1";            
                         $replyData = new VideoMessageBuilder($videoUrl,$picThumbnail);
                         $check =1; 
                        }

@@ -364,7 +364,7 @@ if(!is_null($events)){
                         } 
                    if(strtoupper($userMessage) == "PRINTER") {    
                         // กำหนด action 4 ปุ่ม 4 ประเภท
-                        $actionBuilder = array(
+                                            $actionBuilder = array(
                             new MessageTemplateActionBuilder(
                                 'UTL1',// ข้อความแสดงในปุ่ม
                                 'PRINTER1' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
@@ -376,6 +376,26 @@ if(!is_null($events)){
                             new MessageTemplateActionBuilder(
                                 'UTL3',// ข้อความแสดงในปุ่ม
                                 'PRINTER3' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL4',// ข้อความแสดงในปุ่ม
+                                'PRINTER4' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL5',// ข้อความแสดงในปุ่ม
+                                'PRINTER5' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL6',// ข้อความแสดงในปุ่ม
+                                'PRINTER6' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL7',// ข้อความแสดงในปุ่ม
+                                'PRINTER7' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
+                            ),
+                            new MessageTemplateActionBuilder(
+                                'UTL8',// ข้อความแสดงในปุ่ม
+                                'PRINTER8' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
     
                         );

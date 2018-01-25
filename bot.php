@@ -381,23 +381,6 @@ if(!is_null($events)){
                                 'UTL4',// ข้อความแสดงในปุ่ม
                                 'PRINTER4' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
                             ),
-                            new MessageTemplateActionBuilder(
-                                'UTL5',// ข้อความแสดงในปุ่ม
-                                'PRINTER5' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-                            ),
-                            new MessageTemplateActionBuilder(
-                                'UTL6',// ข้อความแสดงในปุ่ม
-                                'PRINTER6' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-                            ),
-                            new MessageTemplateActionBuilder(
-                                'UTL7',// ข้อความแสดงในปุ่ม
-                                'PRINTER7' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-                            ),
-                            new MessageTemplateActionBuilder(
-                                'UTL8',// ข้อความแสดงในปุ่ม
-                                'PRINTER8' // ข้อความที่จะแสดงฝั่งผู้ใช้ เมื่อคลิกเลือก
-                            ),
-    
                         );
                         $imageUrl = 'https://thetomatos.com/wp-content/uploads/2016/02/printer-clipart-5.png';
                         $replyData = new TemplateMessageBuilder('Button Template',

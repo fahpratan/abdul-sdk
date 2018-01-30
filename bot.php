@@ -112,9 +112,9 @@ if(!is_null($events)){
         if($typeMessage ='text'){
 //////////////////////////////////////////ASK TELL////////////////////////////////////////////////
                $check = 0;
-                  for ($i=1;$i<52;$i++){
-                  if((strtoupper($userMessage) == $obj1[$i][1])||($userMessage) == $obj1[$i][3]||($userMessage) == $obj1[$i][0]){
-                    $textReplyMessage = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];
+                  for ($j=1;$j<52;$j++){
+                  if((strtoupper($userMessage) == $obj1[$j][1])||($userMessage) == $obj1[$j][3]||($userMessage) == $obj1[$j][0]){
+                    $textReplyMessage = "E/N:".$obj1[$j][0]." "."NAME:".$obj1[$j][1]." ".$obj1[$j][2]." "."Nickname:".$obj1[$j][3]." "."ExtNo:".$obj1[$j][4];
                     $replyData = new TextMessageBuilder($textReplyMessage);
                     $check =1;
                     }

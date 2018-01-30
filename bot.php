@@ -63,10 +63,10 @@ while( ($objA = fgetcsv($Name_tel)) !== false) {
         $obj1[] = $objA;
       }
 //DATA TELL UTL
-$obj1 = array();
+$obj2 = array();
 $Name_tel = fopen('file.csv', 'r');
-while( ($objA = fgetcsv($Name_tel)) !== false) {
-        $obj1[] = $objA;
+while( ($objB = fgetcsv($Name_tel)) !== false) {
+        $obj2[] = $objB;
       }
 if(!is_null($events)){
     // ถ้ามีค่า สร้างตัวแปรเก็บ replyToken ไว้ใช้งาน
@@ -123,8 +123,8 @@ if(!is_null($events)){
 ///////////////////////////////////////ASK TEL UTL////////////////////
                 $check = 0;
                   for ($i=1;$i<5964;$i++){
-                  if((strtoupper($userMessage) == $obj1[$i][2])||($userMessage) == $obj1[$i][1]){
-                    $textReplyMessage = "E/N:".$obj1[$i][1]." "."NAME:".$obj1[$i][2]." ".$obj1[$i][3]." "."GROUP:".$obj1[$i][4]." "."DEPT:".$obj1[$i][5]." "."SUP:".$obj1[$i][6]." ".$obj1[$i][7];
+                  if((strtoupper($userMessage) == $obj2[$i][2])||($userMessage) == $obj2[$i][1]){
+                    $textReplyMessage = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." ".$obj2[$i][7];
                     $replyData = new TextMessageBuilder($textReplyMessage);
                     $check =1;
                     }

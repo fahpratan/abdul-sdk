@@ -126,7 +126,7 @@ if(!is_null($events)){
                   if((strtoupper($userMessage) == $obj2[$i][2])||($userMessage) == $obj2[$i][1]){
                     $textReplyMessage = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." ".$obj2[$i][7];
                     $replyData = new TextMessageBuilder($textReplyMessage);
-                   // $check =1;
+                    $check =1;
                     }
                     if ($check==1){break;}
                     }

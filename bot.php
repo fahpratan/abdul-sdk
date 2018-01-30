@@ -64,7 +64,7 @@ while( ($objA = fgetcsv($Name_tel)) !== false) {
       }
 //DATA TELL UTL
 $obj1 = array();
-$Name_tel = fopen('Tel.csv', 'r');
+$Name_tel = fopen('file.csv', 'r');
 while( ($objA = fgetcsv($Name_tel)) !== false) {
         $obj1[] = $objA;
       }
@@ -115,6 +115,16 @@ if(!is_null($events)){
                   for ($i=1;$i<52;$i++){
                   if((strtoupper($userMessage) == $obj1[$i][1])||($userMessage) == $obj1[$i][3]||($userMessage) == $obj1[$i][0]){
                     $textReplyMessage = "E/N:".$obj1[$i][0]." "."NAME:".$obj1[$i][1]." ".$obj1[$i][2]." "."Nickname:".$obj1[$i][3]." "."ExtNo:".$obj1[$i][4];
+                    $replyData = new TextMessageBuilder($textReplyMessage);
+                    $check =1;
+                    }
+                    if ($check==1){break;}
+                    }
+///////////////////////////////////////ASK TEL UTL////////////////////
+                $check = 0;
+                  for ($i=1;$i<5964;$i++){
+                  if((strtoupper($userMessage) == $obj1[$i][2])||($userMessage) == $obj1[$i][1]){
+                    $textReplyMessage = "E/N:".$obj1[$i][1]." "."NAME:".$obj1[$i][2]." ".$obj1[$i][3]." "."GROUP:".$obj1[$i][4]." "."DEPT:".$obj1[$i][5]." "."SUP:".$obj1[$i][6]." ".$obj1[$i][7];
                     $replyData = new TextMessageBuilder($textReplyMessage);
                     $check =1;
                     }

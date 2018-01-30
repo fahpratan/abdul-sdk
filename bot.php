@@ -62,6 +62,12 @@ $Name_tel = fopen('Tel.csv', 'r');
 while( ($objA = fgetcsv($Name_tel)) !== false) {
         $obj1[] = $objA;
       }
+//DATA TELL UTL
+$obj1 = array();
+$Name_tel = fopen('Tel.csv', 'r');
+while( ($objA = fgetcsv($Name_tel)) !== false) {
+        $obj1[] = $objA;
+      }
 if(!is_null($events)){
     // ถ้ามีค่า สร้างตัวแปรเก็บ replyToken ไว้ใช้งาน
     $replyToken = $events['events'][0]['replyToken'];

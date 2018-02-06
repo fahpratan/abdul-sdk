@@ -64,7 +64,7 @@ while( ($objA = fgetcsv($Name_tel)) !== false) {
       }
 //DATA TELL UTL
 $obj2 = array();
-$Name_tel_UTL = fopen('file.csv', 'r');
+$Name_tel_UTL = fopen('file30-1.csv', 'r');
 while( ($objB = fgetcsv($Name_tel_UTL)) !== false) {
         $obj2[] = $objB;
       }

@@ -270,18 +270,17 @@ if(!is_null($events)){
                         );              
                         $check =1;
                         } 
-                  if(strtoupper($userMessage) == "LOCATION1") {
+                    if(strtoupper($userMessage) == "LOCATION1") {
                         $placeName = "Utac Thai Limited1";
                         $placeAddress = "สุขุมวิท, 237 ซอย สุขุมวิท 105 Khwaeng Bang Na, Khet Bang Na, Krung Thep Maha Nakhon 10260";
                         $latitude = 13.661728;
                         $longitude = 100.608836;
                         $locationMessage = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
- 
                         
-                        $picFullSize = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower';
-                        $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower/240';
-                        $imageMessage = new ImageMessageBuilder($picFullSize,$picThumbnail);
-                        
+                        $picFullSizeMAP1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/UTL1-MAP.jpg';
+                        $picThumbnailMAP1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/UTL1-MAP.jpg/240';
+                        $imageMessage = new ImageMessageBuilder($picFullSizeMAP1,$picThumbnailMAP1);
+
                         $multiMessage = new MultiMessageBuilder;                        
                         $multiMessage->add($locationMessage);
                         $multiMessage->add($imageMessage);

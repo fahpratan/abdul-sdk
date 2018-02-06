@@ -292,7 +292,16 @@ if(!is_null($events)){
                         $placeAddress = "บริษัท ยูแทคไทย จำกัด (สาขา 2) Tambon Bang Samak, Amphoe Bang Pakong, Chang Wat Chachoengsao 24180";
                         $latitude = 13.661728;
                         $longitude = 100.608836;
-                        $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
+                        $locationMessage = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);  
+                   
+                        $picFullSizeMAP2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/UTL2-MAP.jpg';
+                        $picThumbnailMAP2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/UTL2-MAP.jpg/240';
+                        $imageMessage = new ImageMessageBuilder($picFullSizeMAP2,$picThumbnailMAP2);
+
+                        $multiMessage = new MultiMessageBuilder;                        
+                        $multiMessage->add($locationMessage);
+                        $multiMessage->add($imageMessage);
+                        $replyData = $multiMessage;      
                         $check =1;
                         } 
                   if(strtoupper($userMessage) == "LOCATION3") {
@@ -300,7 +309,16 @@ if(!is_null($events)){
                         $placeAddress = "Bang Samak, Bang Pakong District, Chachoengsao 24180";
                         $latitude = 13.581658;
                         $longitude = 100.930541;
-                        $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
+                        $locationMessage = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
+                       
+                        $picFullSizeMAP3 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/UTL3-MAP.jpg';
+                        $picThumbnailMAP3 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/UTL3-MAP.jpg/240';
+                        $imageMessage = new ImageMessageBuilder($picFullSizeMAP3,$picThumbnailMAP3);
+
+                        $multiMessage = new MultiMessageBuilder;                        
+                        $multiMessage->add($locationMessage);
+                        $multiMessage->add($imageMessage);
+                        $replyData = $multiMessage;      
                         $check =1;
                         } 
 ///////////////////////////////////////////////////////////////////SERVER STATUS////////////////////////////////////////////////        

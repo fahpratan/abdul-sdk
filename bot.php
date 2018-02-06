@@ -123,12 +123,12 @@ if(!is_null($events)){
 ///////////////////////////////////////ASK TEL UTL////////////////////
                 $check = 0;
                   for ($i=1;$i<5964;$i++){
-                  while((strtoupper($userMessage) == $obj2[$i][2])||($userMessage) == $obj2[$i][1]){
+                  if((strtoupper($userMessage) == $obj2[$i][2])||($userMessage) == $obj2[$i][1]){
                     $textReplyMessage = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." ".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
                     $replyData = new TextMessageBuilder($textReplyMessage);
-                    //$check =1;
+                    $check =1;
                     }
-                    //if ($check==1){break;}
+                    if ($check==1){break;}
                     }     
 ///////////////////////////////////////////TEST SEND FILE/////////////////////////////////////////////////    
                   if(strtoupper($userMessage) == "FILE"){

@@ -121,7 +121,7 @@ if(!is_null($events)){
                     if ($check==1){break;}
                     }
 ///////////////////////////////////////ASK TEL UTL////////////////////
-                $check = 0;
+                 $check = 0;
                   for ($i=1;$i<5964;$i++){
                   if((strtoupper($userMessage) == $obj2[$i][2])||($userMessage) == $obj2[$i][1]){
                     $textReplyMessage = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." ".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
@@ -129,7 +129,7 @@ if(!is_null($events)){
                     $check =1;
                     }
                     if ($check==1){break;}
-                    }     
+                    }
 ///////////////////////////////////////////TEST SEND FILE/////////////////////////////////////////////////    
                   if(strtoupper($userMessage) == "FILE"){
                         $fileName = 'file.txt';
@@ -270,13 +270,13 @@ if(!is_null($events)){
                         );              
                         $check =1;
                         } 
-                    if(strtoupper($userMessage) == "LOCATION1") {
+                  if(strtoupper($userMessage) == "LOCATION1") {
                         $placeName = "Utac Thai Limited1";
                         $placeAddress = "สุขุมวิท, 237 ซอย สุขุมวิท 105 Khwaeng Bang Na, Khet Bang Na, Krung Thep Maha Nakhon 10260";
                         $latitude = 13.661728;
                         $longitude = 100.608836;
                         $locationMessage = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
-                        
+ 
                         $picFullSizeMAP1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/UTL1-MAP.jpg';
                         $picThumbnailMAP1 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/UTL1-MAP.jpg/240';
                         $imageMessage = new ImageMessageBuilder($picFullSizeMAP1,$picThumbnailMAP1);
@@ -292,15 +292,7 @@ if(!is_null($events)){
                         $placeAddress = "บริษัท ยูแทคไทย จำกัด (สาขา 2) Tambon Bang Samak, Amphoe Bang Pakong, Chang Wat Chachoengsao 24180";
                         $latitude = 13.661728;
                         $longitude = 100.608836;
-                        $locationMessage = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
-                        $picFullSizeMAP2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/UTL2-MAP.jpg';
-                        $picThumbnailMAP2 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/UTL2-MAP.jpg/240';
-                        $imageMessage = new ImageMessageBuilder($picFullSizeMAP2,$picThumbnailMAP2);
-
-                        $multiMessage = new MultiMessageBuilder;                        
-                        $multiMessage->add($locationMessage);
-                        $multiMessage->add($imageMessage);
-                        $replyData = $multiMessage;      
+                        $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
                         $check =1;
                         } 
                   if(strtoupper($userMessage) == "LOCATION3") {
@@ -308,16 +300,9 @@ if(!is_null($events)){
                         $placeAddress = "Bang Samak, Bang Pakong District, Chachoengsao 24180";
                         $latitude = 13.581658;
                         $longitude = 100.930541;
-                        $locationMessage = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
-                        $picFullSizeMAP3 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/UTL3-MAP.jpg';
-                        $picThumbnailMAP3 = 'https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/UTL3-MAP.jpg/240';
-                        $imageMessage = new ImageMessageBuilder($picFullSizeMAP3,$picThumbnailMAP3);
-
-                        $multiMessage = new MultiMessageBuilder;                        
-                        $multiMessage->add($locationMessage);
-                        $multiMessage->add($imageMessage);
-                        $replyData = $multiMessage;      
+                        $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
                         $check =1;
+                        } 
 ///////////////////////////////////////////////////////////////////SERVER STATUS////////////////////////////////////////////////        
                   if(strtoupper($userMessage) == "SERVER STATUS") {  
                         // กำหนด action 4 ปุ่ม 4 ประเภท

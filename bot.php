@@ -275,7 +275,17 @@ if(!is_null($events)){
                         $placeAddress = "สุขุมวิท, 237 ซอย สุขุมวิท 105 Khwaeng Bang Na, Khet Bang Na, Krung Thep Maha Nakhon 10260";
                         $latitude = 13.661728;
                         $longitude = 100.608836;
-                        $replyData = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
+                        $locationMessage = new LocationMessageBuilder($placeName, $placeAddress, $latitude ,$longitude);              
+ 
+                        
+                        $picFullSize = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower';
+                        $picThumbnail = 'https://www.mywebsite.com/imgsrc/photos/f/simpleflower/240';
+                        $imageMessage = new ImageMessageBuilder($picFullSize,$picThumbnail);
+                        
+                        $multiMessage = new MultiMessageBuilder;                        
+                        $multiMessage->add($locationMessage);
+                        $multiMessage->add($imageMessage);
+                        $replyData = $multiMessage;      
                         $check =1;
                         } 
                   if(strtoupper($userMessage) == "LOCATION2") {

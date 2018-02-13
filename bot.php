@@ -111,29 +111,38 @@ if(!is_null($events)){
                   if(trim(strtoupper($userMessage)) == $obj2[$i][2]){
                     //while(strtoupper($userMessage) == $obj2[$i][2]){
      
+                       // $textReplyMessage1 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
+                      //  $textMessage1 = new TextMessageBuilder($textReplyMessage1);
                         $textReplyMessage1 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
-                        $textMessage1 = new TextMessageBuilder($textReplyMessage1);
+                     //   $textMessage1 = new TextMessageBuilder($textReplyMessage1);
+                        $replyData = new TextMessageBuilder($textReplyMessage1);
+                        $check =1;
+                   
+                         $textReplyMessage2 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
+                     //   $textMessage1 = new TextMessageBuilder($textReplyMessage1);
+                        $replyData = new TextMessageBuilder($textReplyMessage2);
+                        $check =1;
                         
-                        $textReplyMessage2 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
-                        $textMessage2 = new TextMessageBuilder($textReplyMessage2); 
+                        //$textReplyMessage2 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
+                       // $textMessage2 = new TextMessageBuilder($textReplyMessage2); 
                         
-                        $textReplyMessage3 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
-                        $textMessage3 = new TextMessageBuilder($textReplyMessage3);                  
+                       // $textReplyMessage3 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
+                       // $textMessage3 = new TextMessageBuilder($textReplyMessage3);                  
                         
-                        $textReplyMessage4 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
-                        $textMessage4 = new TextMessageBuilder($textReplyMessage4);
+                       // $textReplyMessage4 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
+                       // $textMessage4 = new TextMessageBuilder($textReplyMessage4);
                         
-                        $textReplyMessage5 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
-                        $textMessage5 = new TextMessageBuilder($textReplyMessage5);
+                      //  $textReplyMessage5 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
+                       // $textMessage5 = new TextMessageBuilder($textReplyMessage5);
 
-                        $multiMessage = new MultiMessageBuilder;
-                        $multiMessage->add($textMessage1);
-                        $multiMessage->add($textMessage2);
-                        $multiMessage->add($textMessage3);
-                        $multiMessage->add($textMessage4);
-                        $multiMessage->add($textMessage5);
-                        $replyData = $multiMessage; 
-                        $check =1;   
+                      //  $multiMessage = new MultiMessageBuilder;
+                     //   $multiMessage->add($textMessage1);
+                     //   $multiMessage->add($textMessage2);
+                     //   $multiMessage->add($textMessage3);
+                     //   $multiMessage->add($textMessage4);
+                     //   $multiMessage->add($textMessage5);
+                     //   $replyData = $multiMessage; 
+                    //    $check =1;   
                     }
                    // }
                     if ($check==1){break;}

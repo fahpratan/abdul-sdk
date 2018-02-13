@@ -58,11 +58,11 @@ $content = file_get_contents('php://input');
 $events = json_decode($content, true);
 
 //DATA TELL UTL
-//$obj2 = array();
-//$Name_tel_UTL = fopen('filesort.csv', 'r');
-//while( ($objB = fgetcsv($Name_tel_UTL)) !== false) {
-//        $obj2[] = $objB;
-//      }
+$obj2 = array();
+$Name_tel_UTL_1 = fopen('filesort.csv', 'r');
+while( ($objB = fgetcsv($Name_tel_UTL_1)) !== false) {
+        $obj2[] = $objB;
+      }
 if(!is_null($events)){
     // ถ้ามีค่า สร้างตัวแปรเก็บ replyToken ไว้ใช้งาน
     $replyToken = $events['events'][0]['replyToken'];

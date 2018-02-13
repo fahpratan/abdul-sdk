@@ -108,7 +108,7 @@ if(!is_null($events)){
 ///////////////////////////////////////ASK TEL UTL////////////////////
                  $check = 0;
                   for ($i=1;$i<5967;$i++){
-                  if(trim(strtoupper($userMessage)) == $obj2[$i][2]){
+                  if(strtoupper($userMessage) == $obj2[$i][2]){
                     //while(strtoupper($userMessage) == $obj2[$i][2]){
      
                        // $textReplyMessage1 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
@@ -116,12 +116,12 @@ if(!is_null($events)){
                         $textReplyMessage1 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
                      //   $textMessage1 = new TextMessageBuilder($textReplyMessage1);
                         $replyData = new TextMessageBuilder($textReplyMessage1);
-                        $check =1;
+                        continue;
                    
-                         $textReplyMessage2 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
+                     //    $textReplyMessage2 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
                      //   $textMessage1 = new TextMessageBuilder($textReplyMessage1);
-                        $replyData = new TextMessageBuilder($textReplyMessage2);
-                        $check =1;
+                    //    $replyData = new TextMessageBuilder($textReplyMessage2);
+                    //    $check =1;
                         
                         //$textReplyMessage2 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
                        // $textMessage2 = new TextMessageBuilder($textReplyMessage2); 

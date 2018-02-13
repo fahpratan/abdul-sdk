@@ -58,11 +58,11 @@ $content = file_get_contents('php://input');
 $events = json_decode($content, true);
 
 //DATA TELL UTL
-$obj2 = array();
-$Name_tel_UTL = fopen('filesort.csv', 'r');
-while( ($objB = fgetcsv($Name_tel_UTL)) !== false) {
-        $obj2[] = $objB;
-      }
+//$obj2 = array();
+//$Name_tel_UTL = fopen('filesort.csv', 'r');
+//while( ($objB = fgetcsv($Name_tel_UTL)) !== false) {
+//        $obj2[] = $objB;
+//      }
 if(!is_null($events)){
     // ถ้ามีค่า สร้างตัวแปรเก็บ replyToken ไว้ใช้งาน
     $replyToken = $events['events'][0]['replyToken'];
@@ -106,38 +106,47 @@ if(!is_null($events)){
     if(!is_null($is_message)){
         if($typeMessage ='text'){
 ///////////////////////////////////////ASK TEL UTL////////////////////
-                 $check = 0;
-                  for ($i=1;$i<5967;$i++){
-                  if(strtoupper($userMessage) == $obj2[$i][2]){
+    //             $check = 0;
+    //              for ($i=1;$i<5967;$i++){
+    //              if(strtoupper($userMessage) == $obj2[$i][2]){
                     //while(strtoupper($userMessage) == $obj2[$i][2]){
      
-                        $textReplyMessage1 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
-                        $textMessage1 = new TextMessageBuilder($textReplyMessage1);
+    //                    $textReplyMessage1 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
+    //                    $textMessage1 = new TextMessageBuilder($textReplyMessage1);
                                          
-                        $textReplyMessage2 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
-                        $textMessage2 = new TextMessageBuilder($textReplyMessage2);
+    //                    $textReplyMessage2 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
+    //                    $textMessage2 = new TextMessageBuilder($textReplyMessage2);
                                          
-                        $textReplyMessage3 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
-                        $textMessage3 = new TextMessageBuilder($textReplyMessage3);                  
+    //                    $textReplyMessage3 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
+    //                    $textMessage3 = new TextMessageBuilder($textReplyMessage3);                  
                         
-                        $textReplyMessage4 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
-                        $textMessage4 = new TextMessageBuilder($textReplyMessage4);
+    //                    $textReplyMessage4 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
+    //                    $textMessage4 = new TextMessageBuilder($textReplyMessage4);
                         
-                        $textReplyMessage5 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
-                        $textMessage5 = new TextMessageBuilder($textReplyMessage5);
-
-                        $multiMessage = new MultiMessageBuilder;
-                        $multiMessage->add($textMessage1);
-                        $multiMessage->add($textMessage2);
-                        $multiMessage->add($textMessage3);
-                        $multiMessage->add($textMessage4);
-                        $multiMessage->add($textMessage5);
-                        $replyData = $multiMessage; 
-                        $check =1;   
-                    }
+    //                    $textReplyMessage5 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
+    //                    $textMessage5 = new TextMessageBuilder($textReplyMessage5);
+    
+    //                    $multiMessage = new MultiMessageBuilder;
+    //                    $multiMessage->add($textMessage1);
+    //                    $multiMessage->add($textMessage2);
+    //                    $multiMessage->add($textMessage3);
+    //                    $multiMessage->add($textMessage4);
+    //                    $multiMessage->add($textMessage5);
+    //                    $replyData = $multiMessage; 
+    //                    $check =1;   
+    //                }
                    // }
-                    if ($check==1){break;}
-                    }
+    //                if ($check==1){break;}
+    //
+      $Name_tel_UTL = fopen('filesort.csv', 'r');
+    	while (($objArr = fgetcsv($Name_tel_UTL)) !== FALSE) {
+			if(strtoupper($userMessage)==$objArr[2]){
+			       $textReplyMessage = "E/N:".$objArr[1]." "."NAME:".$objArr[2]." ".$objArr[3]." "."GROUP:".$objArr[4]." "."DEPT:".$objArr[5]." "."SUP:".$objArr[6]." "."TEL:".$objArr[7]." "."TYPE:".$objArr[8];
+             $replyData = new TextMessageBuilder($textReplyMessage);
+             $check =1;  	
+          		}
+              if ($check==1){break;}                
+              }
          /////////////////////////////////
          for ($i=1;$i<5967;$i++){
                   if($userMessage == $obj2[$i][1]){

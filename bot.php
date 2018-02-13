@@ -56,15 +56,10 @@ $bot = new LINEBot($httpClient, array('channelSecret' => LINE_MESSAGE_CHANNEL_SE
 $content = file_get_contents('php://input');
 // แปลงข้อความรูปแบบ JSON  ให้อยู่ในโครงสร้างตัวแปร array
 $events = json_decode($content, true);
-//DATA tell
-$obj1 = array();
-$Name_tel = fopen('Tel.csv', 'r');
-while( ($objA = fgetcsv($Name_tel)) !== false) {
-        $obj1[] = $objA;
-      }
+
 //DATA TELL UTL
 $obj2 = array();
-$Name_tel_UTL = fopen('file30-1.csv', 'r');
+$Name_tel_UTL = fopen('filesort.csv', 'r');
 while( ($objB = fgetcsv($Name_tel_UTL)) !== false) {
         $obj2[] = $objB;
       }
@@ -110,19 +105,9 @@ if(!is_null($events)){
     }
     if(!is_null($is_message)){
         if($typeMessage ='text'){
-//////////////////////////////////////////ASK TELL////////////////////////////////////////////////
-               $check = 0;
-                  for ($j=1;$j<52;$j++){
-                  if((strtoupper($userMessage) == $obj1[$j][1])||($userMessage) == $obj1[$j][3]||($userMessage) == $obj1[$j][0]){
-                    $textReplyMessage = "E/N:".$obj1[$j][0]." "."NAME:".$obj1[$j][1]." ".$obj1[$j][2]." "."Nickname:".$obj1[$j][3]." "."ExtNo:".$obj1[$j][4];
-                    $replyData = new TextMessageBuilder($textReplyMessage);
-                    $check =1;
-                    }
-                    if ($check==1){break;}
-                    }
 ///////////////////////////////////////ASK TEL UTL////////////////////
                  $check = 0;
-                  for ($i=1;$i<5964;$i++){
+                  for ($i=1;$i<5967;$i++){
                   if((strtoupper($userMessage) == $obj2[$i][2])||($userMessage) == $obj2[$i][1]){
                    // while(strtoupper($userMessage) == $obj2[$i][2]){
                     $textReplyMessage = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." ".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];

@@ -109,7 +109,7 @@ if(!is_null($events)){
                  $check = 0;
                   for ($i=1;$i<5967;$i++){
                   if((strtoupper($userMessage) == $obj2[$i][2])||($userMessage) == $obj2[$i][1]){
-                   // while(strtoupper($userMessage) == $obj2[$i][2]){
+                    while(strtoupper($userMessage) == $obj2[$i][2]){
      
                         $textReplyMessage1 = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
                         $textMessage1 = new TextMessageBuilder($textReplyMessage1);
@@ -135,7 +135,7 @@ if(!is_null($events)){
                         $replyData = $multiMessage; 
                         $check =1;   
                     }
-                    //}
+                    }
                     if ($check==1){break;}
                     }
 ///////////////////////////////////////////TEST SEND FILE/////////////////////////////////////////////////    

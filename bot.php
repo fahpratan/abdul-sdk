@@ -105,7 +105,7 @@ if(!is_null($events)){
     if(!is_null($is_message)){
         if($typeMessage ='text'){
 ///////////////////////////////////////ASK TEL UTL////////////////////
-    //              $check = 0;
+                  $check = 0;
     //              for ($i=1;$i<5967;$i++){
     //              if(strtoupper($userMessage) == $obj2[$i][2]){
                     //while(strtoupper($userMessage) == $obj2[$i][2]){

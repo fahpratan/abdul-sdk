@@ -144,7 +144,8 @@ if(!is_null($events)){
              $replyData = new TextMessageBuilder($textReplyMessage);
 	     $check =1;
 			}
-              if ($check==1){break;}                
+              if ($check==1){break;} 
+		continue;
               }
          /////////////////////////////////
          for ($i=1;$i<5967;$i++){

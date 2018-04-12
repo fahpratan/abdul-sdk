@@ -145,7 +145,7 @@ if(!is_null($events)){
 	     $check =1;
 			}
               if ($check==1){break;} 
-		continue;
+		//continue;
               }
          /////////////////////////////////
          for ($i=1;$i<5967;$i++){

@@ -134,9 +134,14 @@ if(!is_null($events)){
                         } 
 ////////////////////////////////////////VIDEO/////////////////////////////////////
                   if(strtoupper($userMessage) == "V"){
-                        $picThumbnail = 'https://www.ninenik.com/imgsrc/photos/f/sampleimage/240';
-                        $videoUrl = "https://www.ninenik.com/line/simplevideo.mp4";            
-                        $replyData = new VideoMessageBuilder($videoUrl,$picThumbnail);
+                        $textReplyMessage = "Bot ตอบกลับคุณเป็นข้อความ";
+                    	$replyData = new TextMessageBuilder($textReplyMessage);
+                        $check =1; 
+                       }
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+		   if(strtoupper($userMessage) == "F"){
+                        $textReplyMessage = "https://github.com/fahpratan/abdul-sdk/blob/master/filesort.csv";
+                    	$replyData = new TextMessageBuilder($textReplyMessage);
                         $check =1; 
                        }
 //////////////////////////////////////////ASK TELL ALL////////////////////////////////////////////////                    

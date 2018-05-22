@@ -140,7 +140,7 @@ if(!is_null($events)){
                        }
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 		   if(strtoupper($userMessage) == "F"){
-                        $textReplyMessage = "https://github.com/fahpratan/abdul-sdk/blob/master/filesort.csv";
+                        $textReplyMessage = "https://raw.githubusercontent.com/fahpratan/abdul-sdk/master/filesort.csv";
                     	$replyData = new TextMessageBuilder($textReplyMessage);
                         $check =1; 
                        }

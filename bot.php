@@ -62,6 +62,12 @@ $Name_tel_UTL_1 = fopen('filesort.csv', 'r');
 while( ($objB = fgetcsv($Name_tel_UTL_1)) !== false) {
         $obj2[] = $objB;
       }
+/////////////////////
+$obj3 = array();
+$Name_tel_UTL_3 = fopen('off.csv', 'r');
+while( ($objz = fgetcsv($Name_tel_UTL_3)) !== false) {
+        $obj3[] = $objz;
+      }
 if(!is_null($events)){
     // ถ้ามีค่า สร้างตัวแปรเก็บ replyToken ไว้ใช้งาน
     $replyToken = $events['events'][0]['replyToken'];
@@ -115,7 +121,7 @@ if(!is_null($events)){
               if ($check==1){break;}                
               }
 ////////////////////////////////////ASK IP//////////////////////////////
-		$Name_tel_UTL1 = fopen('off.csv', 'r');
+		$Name_tel_UTL3 = fopen('off.csv', 'r');
     	while (($objArr = fgetcsv($Name_tel_UTL)) !== FALSE) {
 	    if(strtoupper($userMessage)=="Offline"){
 			 $textReplyMessage = "IP:".$objArr[0];

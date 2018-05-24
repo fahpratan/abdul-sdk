@@ -111,7 +111,7 @@ if(!is_null($events)){
 	    if(strtoupper($userMessage)==$objArr[2]){
 			 $textReplyMessage = "E/N:".$objArr[1]." "."NAME:".$objArr[2]." ".$objArr[3]." "."GROUP:".$objArr[4]." "."DEPT:".$objArr[5]." "."SUP:".$objArr[6]." "."TEL:".$objArr[7]." "."TYPE:".$objArr[8];
              $replyData = new TextMessageBuilder($textReplyMessage);
-	     //$check =1;
+	     $check =1;
 			}
               if ($check==1){break;}                
               }

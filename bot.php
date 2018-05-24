@@ -122,7 +122,7 @@ if(!is_null($events)){
                   if($userMessage == $obj2[$i][1]){
                     $textReplyMessage = "E/N:".$obj2[$i][1]." "."NAME:".$obj2[$i][2]." ".$obj2[$i][3]." "."GROUP:".$obj2[$i][4]." "."DEPT:".$obj2[$i][5]." "."SUP:".$obj2[$i][6]." "."TEL:".$obj2[$i][7]." "."TYPE:".$obj2[$i][8];
                     $replyData = new TextMessageBuilder($textReplyMessage);
-                   // $check =1;
+                    $check =1;
                     }
                     if ($check==1){break;}
                     }        

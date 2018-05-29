@@ -136,7 +136,7 @@ if(!is_null($events)){
                         //$stickerId = $eventObj->getFileSize();
                         } 
 ////////////////////////////////////////VIDEO/////////////////////////////////////
-                  if(strtoupper($userMessage) == "V"){
+                  if(strtoupper($userMessage) == "QUESTION"){
                         $textReplyMessage = "Bot ตอบกลับคุณเป็นข้อความ";
                     	$replyData = new TextMessageBuilder($textReplyMessage);
                         $check =1; 
